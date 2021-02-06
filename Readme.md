@@ -27,3 +27,4 @@ Employees leave is also 30 leaves per year
 15 Special casual leave. 
 
 Then calculate salary
+namit
