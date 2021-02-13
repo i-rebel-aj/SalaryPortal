@@ -10,8 +10,14 @@ router.get("/", (req, res)=>{
     res.render("login")
 })
 
-router.get("/home", (req, res)=>{
-    res.render("home")
+router.get("/adminhome", (req, res)=>{
+	console.log("get")
+    res.render("adminhome")
+})
+
+router.post("/adminhome", urlencodedparser, (req, res)=>{
+	console.log(req.body)
+    res.render("adminhome")
 })
 
 router.get("/registerFaculty", (req, res)=>{

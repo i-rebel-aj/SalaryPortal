@@ -9,7 +9,7 @@
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="img/favicon.png">
 
-  <title>Register Faculty</title>
+  <title>Faculty</title>
 
   <!-- Bootstrap CSS -->
   <link href="../public/css/bootstrap.min.css" rel="stylesheet">
@@ -56,7 +56,7 @@
       </div>
 
       <!--logo start-->
-      <a href="/adminhome" class="logo">Indian Institute of Information Technology <span class="lite">Admin</span></a>
+      <a href="/facultyHome" class="logo">Indian Institute of Information Technology <span class="lite">Faculty</span></a>
       <!--logo end-->
 
       <!-- <div class="nav search-row" id="top_menu"> -->
@@ -274,7 +274,7 @@
           </li> -->
           <!-- alert notification end-->
           <!-- user login dropdown start-->
-         <!--  <li class="dropdown">
+       <!--    <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="profile-ava">
                                 <img alt="" src="img/avatar1_small.jpg">
@@ -305,19 +305,29 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu">
           <li class="active">
-            <a class="" href="/adminhome">
-                          <i class="icon_house_alt"></i>
-                          <span>Dashboard</span>
-                      </a>
+            <a class="" href="/facultyHome">
+              <i class="icon_house_alt"></i>
+              <span>Dashboard</span>
+            </a>
           </li>
           <!-- <li class="sub-menu">
               <li><a class="register" id="register" href="/registerFaculty">Register Faculty</a></li>
           </li> -->
           
-           <li class="register" id="register">
-              <a class="" href="/registerFaculty">
-                 <i class="icon_profile"></i>
-                <span>Register Faculty</span>
+           <li class="salaryRecpt" id="salaryRecpt">
+              <a class="salary" href="/salaryRecpt">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-receipt" viewBox="0 0 16 16">
+  <path d="M1.92.506a.5.5 0 0 1 .434.14L3 1.293l.646-.647a.5.5 0 0 1 .708 0L5 1.293l.646-.647a.5.5 0 0 1 .708 0L7 1.293l.646-.647a.5.5 0 0 1 .708 0L9 1.293l.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .801.13l.5 1A.5.5 0 0 1 15 2v12a.5.5 0 0 1-.053.224l-.5 1a.5.5 0 0 1-.8.13L13 14.707l-.646.647a.5.5 0 0 1-.708 0L11 14.707l-.646.647a.5.5 0 0 1-.708 0L9 14.707l-.646.647a.5.5 0 0 1-.708 0L7 14.707l-.646.647a.5.5 0 0 1-.708 0L5 14.707l-.646.647a.5.5 0 0 1-.708 0L3 14.707l-.646.647a.5.5 0 0 1-.801-.13l-.5-1A.5.5 0 0 1 1 14V2a.5.5 0 0 1 .053-.224l.5-1a.5.5 0 0 1 .367-.27zm.217 1.338L2 2.118v11.764l.137.274.51-.51a.5.5 0 0 1 .707 0l.646.647.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.509.509.137-.274V2.118l-.137-.274-.51.51a.5.5 0 0 1-.707 0L12 1.707l-.646.647a.5.5 0 0 1-.708 0L10 1.707l-.646.647a.5.5 0 0 1-.708 0L8 1.707l-.646.647a.5.5 0 0 1-.708 0L6 1.707l-.646.647a.5.5 0 0 1-.708 0L4 1.707l-.646.647a.5.5 0 0 1-.708 0l-.509-.51z"/>
+  <path d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm8-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5z"/>
+</svg>
+                <span>Salary Receipt</span>
+              </a>
+          </li>
+
+          <li class="applyleave" id="applyleave">
+              <a class="applyleave" href="/applyleave">
+                <i class="fa fa-file-text-o"></i>
+                <span>Apply For Leave</span>
               </a>
           </li>
 
@@ -332,99 +342,14 @@
       <section class="wrapper">
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-file-text-o"></i> Form </h3>
+            <h3 class="page-header"><i class="fa fa-file-text-o"></i> Receipt </h3>
             <ol class="breadcrumb">
-              <li><i class="fa fa-home"></i><a href="/adminhome">Home</a></li>
-              <li><i class="icon_document_alt"></i>Forms</li>
-              <li><i class="fa fa-file-text-o"></i>Form elements</li>
+              <li><i class="fa fa-home"></i><a href="/facultyHome">Home</a></li>
+              <li><i class="icon_document_alt"></i>Salary Receipt</li>
             </ol>
           </div>
         </div>
-        <div class="row">
-          <div class="col-lg-12">
-            <section class="panel">
-              <header class="panel-heading">
-                Form Elements
-              </header>
-              <div class="panel-body">
-
-
-                <form class="form-horizontal " method="post" action="/success">
-
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">First Name</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" name="fname" required>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Last Name</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" name="lname">
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Type</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" name="type" required>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="control-label col-lg-2" for="select" required>Institute Name</label>
-                    <div class="col-lg-10">
-                      <select class="form-control m-bot15" name="institute">
-                        <option value="" selected disabled>Please select</option>
-                            <option>Indian Institute of Information Technology Guwahati</option>
-                            <option>Indian Institute of Technology Guwahati</option>
-                            <option>Guwahati University</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Registration Id</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" name="reg_id" required>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                      <label class="col-sm-2 control-label" for="join_date">Joining Date</label>
-                      <div class="col-sm-10">
-                        <input type="date" id="join_date" class="form-control" name="join_date" required>
-                      </div>  
-                  </div>
-
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Email</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" name="email" required>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Password</label>
-                    <div class="col-sm-10">
-                      <input class="form-control" type="password" name="pass" id="pass" required>
-                    </div>
-                  </div>
-
-                  <button class = "generate" id="gen_pass" type="button">
-                    Generate Password
-                  </button>
-
-                  <input type="submit" name="Register" class="form-control">
-                </form>
-
-              </div>
-
-            </section>
-
-          </div>
-        </div>
+        
         <!-- Basic Forms & Horizontal Forms-->
         <!-- page end-->
       </section>
