@@ -14,7 +14,7 @@ function myfunction()
             document.getElementById("form_id").action = action;
             document.getElementById("form_id").submit();
         } else {
-            alert("Please set form action");
+            alert("Please select role");
         }
     }
 }

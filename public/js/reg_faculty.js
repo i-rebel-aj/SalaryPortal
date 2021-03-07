@@ -4,4 +4,11 @@ var Script = function () {
             alert('hello');
         };
 
+        var upload = document.getElementById("uploadfile");
+
+        upload.addEventListener("change",function(){
+        	// alert(upload.value);
+        	document.getElementById("form").classList.add("d-none");
+        });
+
 }();

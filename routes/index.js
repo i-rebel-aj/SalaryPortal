@@ -11,12 +11,12 @@ router.get("/", (req, res)=>{
 })
 
 router.get("/adminhome", (req, res)=>{
-	console.log("get")
+	// console.log("get")
     res.render("adminhome")
 })
 
 router.post("/adminhome", urlencodedparser, (req, res)=>{
-	console.log(req.body)
+	// console.log(req.body)
     res.render("adminhome")
 })
 
@@ -25,7 +25,17 @@ router.get("/registerFaculty", (req, res)=>{
 })
 
 router.post("/success", urlencodedparser ,(req, res)=>{
-    console.log(req.body);
+    // console.log(req.body);
     res.render("home");
+})
+
+router.get("/leaves", urlencodedparser ,(req, res)=>{
+    // console.log(req.body);
+    res.render("viewleaves");
+})
+
+router.post("/leaves", urlencodedparser ,(req, res)=>{
+    console.log(req.body);
+    res.redirect("/leaves");
 })
 module.exports=router

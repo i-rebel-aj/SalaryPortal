@@ -28,20 +28,22 @@
         <p class="login-img"><i class="icon_lock_alt"></i></p>
         <div class="input-group">
           <span class="input-group-addon"><i class="icon_profile"></i></span>
-          <input type="text" class="form-control" name="email" id="email"/>
+          <input type="text" class="form-control" name="email" id="email" placeholder="Username" />
         </div>
         
 
         <div class="input-group">
           <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-          <input type="password" class="form-control" name="password" id="password"/>
+          <input type="password" class="form-control" name="password" id="password" placeholder="Password" />
         </div>
         
-        <select id="form_action" class="form-control" onChange="select_change()" >
-          <option value="" disabled selected>Please Select</option>
+        <select id="form_action" class="browser-default form-control" onChange="select_change()" >
+          <option value="" disabled selected>Role</option>
           <option value="/adminhome">Admin</option>
           <option value="/facultyHome">Faculty</option>
         </select>
+
+
 
         <label class="checkbox">
           <input type="checkbox" name="checkbox" value="remember-me"> Remember me

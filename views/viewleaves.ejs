@@ -9,7 +9,7 @@
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="img/favicon.png">
 
-  <title>Register Faculty</title>
+  <title>Leaves</title>
 
   <!-- Bootstrap CSS -->
   <link href="../public/css/bootstrap.min.css" rel="stylesheet">
@@ -322,7 +322,7 @@
           </li>
 
           <li class="register" id="register">
-              <a class="" href="/leaves">
+              <a class="" href="#">
                 <i class="fa fa-file-text-o"></i>
                 <span>View Leaves</span>
               </a>
@@ -347,11 +347,11 @@
       <section class="wrapper">
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-file-text-o"></i> Form </h3>
+            <h3 class="page-header"><i class="fa fa-file-text-o"></i>Leaves</h3>
             <ol class="breadcrumb">
               <li><i class="fa fa-home"></i><a href="/adminhome">Home</a></li>
-              <li><i class="icon_document_alt"></i>Forms</li>
-              <li><i class="fa fa-file-text-o"></i>Form elements</li>  
+              <li><i class="icon_document_alt"></i>Leaves</li>
+              <!-- <li><i class="fa fa-file-text-o"></i>Form elements</li>   -->
             </ol>
 
            <!-- <div class="visible file btn form-control">
@@ -367,96 +367,105 @@
         <div class="row" id="form">
           <div class="col-lg-12">
             <section class="panel">
-              <header class="panel-heading">
-                Form Elements
-              </header>
-              <div class="panel-body">
-
-
-                <form class="form-horizontal " method="post" action="/success">
-
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">First Name</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" name="fname" required>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Last Name</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" name="lname">
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="control-label col-lg-2" for="select" required>Department</label>
-                    <div class="col-lg-10">
-                      <select class="form-control" name="department">
-                        <option value="" selected disabled></option>
-                            <option>ECE</option>
-                            <option>CSE</option>
-                      </select>
-                    </div>
-                  </div>
-                  
-
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Type</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" name="type" required>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="control-label col-lg-2" for="select" required>Institute Name</label>
-                    <div class="col-lg-10">
-                      <select class="form-control" name="institute">
-                        <option value="" selected disabled></option>
-                            <option>Indian Institute of Information Technology Guwahati</option>
-                            <option>Indian Institute of Technology Guwahati</option>
-                            <option>Guwahati University</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Registration Id</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" name="reg_id" required>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                      <label class="col-sm-2 control-label" for="join_date">Joining Date</label>
+              <!-- class="d-none" -->
+                <div id="info" class="d-none">
+                  <input type="button" class="form-control" id="back" value="Back" onclick="goback(this)">
+                  <form class="form-horizontal" method="post" action="/leaves">
+                    <header class="panel-heading">
+                      Leave Detail
+                    </header>
+                    
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">Enrollment Number</label>
                       <div class="col-sm-10">
-                        <input type="date" id="join_date" class="form-control" name="join_date" required>
+                        <input class="form-control" type="text" name="enrollment" readonly="readonly" id="enrollment">
                       </div>  
-                  </div>
-
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Email</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" name="email" required>
                     </div>
-                  </div>
 
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Password</label>
-                    <div class="col-sm-10">
-                      <input class="form-control" type="password" name="pass" id="pass" required>
+
+                    <div class="form-group">
+                     <label class="col-sm-2 control-label">Faculty Name</label>
+                      <div class="col-sm-10">
+                        <input class="form-control" type="text" name="name" readonly="readonly" id="name">
+                      </div>
                     </div>
-                  </div>
+                    
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">Department</label>
+                      <div class="col-sm-10">
+                        <input class="form-control" type="text" name="department" readonly="readonly" id="department">
+                      </div>
+                    </div>
+                    
+                    <div class="form-group" >
+                      <label class="col-sm-2 control-label">Leaves Remaining</label>
+                      <div class="col-sm-10">
+                        <input class="form-control" type="text" name="leavesReamaining" readonly="readonly" id="leavesRemaining">
+                      </div>
+                    </div>
 
-                  <button class = "generate" id="gen_pass" type="button">
-                    Generate Password
-                  </button>
+                    <div class="form-group" >
+                      <label class="col-sm-2 control-label">Reason</label>
+                      <div class="col-sm-10">
+                        <input class="form-control" type="text" name="reason" readonly="readonly" id="reason">
+                      </div>
+                    </div>
 
-                  <input type="submit" name="Register" class="form-control">
-                </form>
+                    <div class="form-group" >
+                      <label class="col-sm-2 control-label">Status</label>
+                      <div class="col-sm-10">
+                        <input class="form-control" type="text" name="status" readonly="readonly" id="status">
+                      </div>
+                    </div>
 
-              </div>
+                    <input type="submit" class="form-control" id="approve" value="Approve">
+                  </form>
+                </div>
+                
+              </section>
 
+              <section>
+              <table id="leaveTable" class="table table-hover" onclick="table(this)">
+
+                <thead>
+                  <tr>
+                    <th scope="col">Enrollment No</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Department</th>
+                    <th scope="col">Leaves Remaining</th>
+                    <th scope="col">Reason</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                
+                <tbody>
+                  <tr onclick="row(this)">
+                    <td>12345678</td>
+                    <td>Rakesh Matam</td>
+                    <td>CSE</td>
+                    <td>12</td>
+                    <td>Medical Emergency</td>
+                    <td>Pending</td>
+                  </tr>
+                  <tr onclick="row(this)">
+                    <td>123456789</td>
+                    <td>Rakesh Matam</td>
+                    <td>CSE</td>
+                    <td>12</td>
+                    <td>Medical Emergency</td>
+                    <td>Pending</td>
+                  </tr>
+                  <tr onclick="row(this)">
+                    <td>1234567890</td>
+                    <td>Rakesh Matam</td>
+                    <td>CSE</td>
+                    <td>12</td>
+                    <td>Medical Emergency</td>
+                    <td>Pending</td>
+                  </tr>
+                </tbody>
+                
+              </table>
             </section>
 
           </div>
@@ -498,7 +507,7 @@
   <!-- ck editor -->
   <!-- <script type="text/javascript" src="assets/ckeditor/ckeditor.js"></script> -->
   <!-- custom form component script for this page-->
-  <script src="../public/js/reg_faculty.js"></script>
+  <script src="../public/js/viewleaves.js"></script>
   <!-- custome script for all page -->
   <script src="../public/js/scripts.js"></script>
 
