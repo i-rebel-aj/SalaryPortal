@@ -9930,3 +9930,7 @@ span.customSelect.changed {
 #info #back:hover{
     cursor: pointer;
 }
+#download:hover{
+    background-color: #16273b;
+    /*cursor: pointer;*/
+}

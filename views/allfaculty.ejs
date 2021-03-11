@@ -78,8 +78,8 @@
               </a>
           </li>
 
-          <li class="register" id="register">
-              <a class="" href="#">
+          <li class="leaves" id="leaves">
+              <a class="" href="/leaves">
                 <i class="fa fa-file-text-o"></i>
                 <span>View Leaves</span>
               </a>
@@ -104,10 +104,10 @@
       <section class="wrapper">
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-file-text-o"></i>Leaves</h3>
+            <h3 class="page-header"><i class="fa fa-file-text-o"></i>List</h3>
             <ol class="breadcrumb">
               <li><i class="fa fa-home"></i><a href="/adminhome">Home</a></li>
-              <li><i class="icon_document_alt"></i>Leaves</li>
+              <li><i class="icon_document_alt"></i>All Faculty</li>
               <!-- <li><i class="fa fa-file-text-o"></i>Form elements</li>   -->
             </ol>
 
@@ -124,7 +124,7 @@
                   <input type="button" class="form-control" id="back" value="Back" onclick="goback(this)">
                   <form class="form-horizontal" method="post" action="/leaves">
                     <header class="panel-heading">
-                      Leave Detail
+                      Faculty Detail
                     </header>
                     
                     <div class="form-group">
@@ -148,6 +148,13 @@
                         <input class="form-control" type="text" name="department" readonly="readonly" id="department">
                       </div>
                     </div>
+
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">Joining Date</label>
+                      <div class="col-sm-10">
+                        <input class="form-control" type="text" name="joindate" readonly="readonly" id="joindate">
+                      </div>
+                    </div>
                     
                     <div class="form-group" >
                       <label class="col-sm-2 control-label">Leaves Remaining</label>
@@ -156,22 +163,10 @@
                       </div>
                     </div>
 
-                    <div class="form-group" >
-                      <label class="col-sm-2 control-label">Reason</label>
-                      <div class="col-sm-10">
-                        <input class="form-control" type="text" name="reason" readonly="readonly" id="reason">
-                      </div>
-                    </div>
-
-                    <div class="form-group" >
-                      <label class="col-sm-2 control-label">Status</label>
-                      <div class="col-sm-10">
-                        <input class="form-control" type="text" name="status" readonly="readonly" id="status">
-                      </div>
-                    </div>
-
+                    
+<!-- 
                     <input type="submit" class="form-control" id="approve" value="Approve">
-                    <input type="button" class="form-control" id="download" value="Download PDF" onclick="download()">
+                    <input type="button" class="form-control" id="leavedownload" value="Download PDF"> -->
                   </form>
                 </div>
                 
@@ -181,16 +176,16 @@
                 <div>
                   
                 
-              <table id="leaveTable" class="table table-hover" onclick="table(this)">
+              <table id="infotable" class="table table-hover" onclick="table(this)">
 
                 <thead>
                   <tr>
                     <th scope="col">Enrollment No</th>
                     <th scope="col">Name</th>
+                    <th scope="col">Joining Date</th>
                     <th scope="col">Department</th>
                     <th scope="col">Leaves Remaining</th>
-                    <th scope="col">Reason</th>
-                    <th scope="col">Status</th>
+                    
                   </tr>
                 </thead>
                 
@@ -198,26 +193,29 @@
                   <tr onclick="row(this)">
                     <td>12345678</td>
                     <td>Rakesh Matam</td>
+                    <td>02-12-2019</td>
                     <td>CSE</td>
                     <td>12</td>
-                    <td>Medical Emergency</td>
-                    <td>Pending</td>
+                    
+                   
                   </tr>
                   <tr onclick="row(this)">
                     <td>123456789</td>
                     <td>Rakesh Matam</td>
+                    <td>15-06-2018</td>
                     <td>CSE</td>
                     <td>12</td>
-                    <td>Medical Emergency</td>
-                    <td>Pending</td>
+                    
+                    
                   </tr>
                   <tr onclick="row(this)">
                     <td>1234567890</td>
                     <td>Rakesh Matam</td>
+                    <td>03-01-2015</td>
                     <td>CSE</td>
                     <td>12</td>
-                    <td>Medical Emergency</td>
-                    <td>Pending</td>
+                    
+                   
                   </tr>
                 </tbody>
                 
@@ -264,7 +262,7 @@
   <!-- ck editor -->
   <!-- <script type="text/javascript" src="assets/ckeditor/ckeditor.js"></script> -->
   <!-- custom form component script for this page-->
-  <script src="../public/js/viewleaves.js"></script>
+  <script src="../public/js/allfaculty.js"></script>
   <!-- custome script for all page -->
   <script src="../public/js/scripts.js"></script>
 

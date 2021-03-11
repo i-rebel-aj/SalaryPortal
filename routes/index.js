@@ -38,4 +38,9 @@ router.post("/leaves", urlencodedparser ,(req, res)=>{
     console.log(req.body);
     res.redirect("/leaves");
 })
+
+router.get("/allfaculty", urlencodedparser ,(req, res)=>{
+    // console.log(req.body);
+    res.render("allfaculty");
+})
 module.exports=router
