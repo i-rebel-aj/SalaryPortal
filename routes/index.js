@@ -43,4 +43,9 @@ router.get("/allfaculty", urlencodedparser ,(req, res)=>{
     // console.log(req.body);
     res.render("allfaculty");
 })
+
+router.get("/profile", urlencodedparser ,(req, res)=>{
+    // console.log(req.body);
+    res.render("facProfile");
+})
 module.exports=router

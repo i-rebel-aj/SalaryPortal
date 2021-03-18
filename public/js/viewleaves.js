@@ -43,9 +43,10 @@ function goback(x)
 }
 
 
-function download()
+function downloadpdf()
 {
-  alert("download");
+  // console.log("sfnkdj");
+  // alert("download");
   let  newWin = window.open('', '', 'height=700,width=700');
   let style = "<style>";
   // style = style + "h2 {text-align:center; font:22px Times New Roman; font-weight:bold;}";
