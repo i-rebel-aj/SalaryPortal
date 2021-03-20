@@ -12,40 +12,60 @@ router.get("/", (req, res)=>{
 
 router.get("/adminhome", (req, res)=>{
 	// console.log("get")
-    res.render("adminhome")
+    res.render("../views/admin/adminhome")
 })
 
 router.post("/adminhome", urlencodedparser, (req, res)=>{
 	// console.log(req.body)
-    res.render("adminhome")
+    res.render("../views/admin/adminhome")
 })
 
 router.get("/registerFaculty", (req, res)=>{
-    res.render("registerFaculty")
+    res.render("../views/admin/registerFaculty")
 })
 
 router.post("/success", urlencodedparser ,(req, res)=>{
     // console.log(req.body);
-    res.render("home");
+    res.render("../views/admin/adminhome");
 })
 
 router.get("/leaves", urlencodedparser ,(req, res)=>{
     // console.log(req.body);
-    res.render("viewleaves");
+    res.render("../views/admin/viewleaves");
 })
 
 router.post("/leaves", urlencodedparser ,(req, res)=>{
     console.log(req.body);
-    res.redirect("/leaves");
+    res.redirect("../views/admin/leaves");
 })
 
 router.get("/allfaculty", urlencodedparser ,(req, res)=>{
     // console.log(req.body);
-    res.render("allfaculty");
+    res.render("../views/admin/allfaculty");
 })
+
+
+
+// **** Faculty****
+
+router.get('/facultyHome', function(req, res){
+  res.render('../views/faculty/faculty_home');
+});
+
+router.post('/facultyHome', function(req, res){
+  res.render('../views/faculty/faculty_home');
+});
+
+router.get('/salaryRecpt', function(req, res){
+  res.render('../views/faculty/salary');
+});
+
+router.get('/applyleave', function(req, res){
+  res.render('../views/faculty/applyleave');
+});
 
 router.get("/profile", urlencodedparser ,(req, res)=>{
     // console.log(req.body);
-    res.render("facProfile");
+    res.render("../views/faculty/facProfile");
 })
 module.exports=router

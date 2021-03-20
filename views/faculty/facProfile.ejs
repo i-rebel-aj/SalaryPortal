@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<%- include('../Partials/MetaTag/facultymeta.ejs') %>
+  <title>Profile</title>
+</head>
+
+<body>
+
+  <!-- container section start -->
+  <section id="container" class="">
+    <!--header start-->
+    <%- include('../Partials/Navbar/facultyNav.ejs') %>
+
+     <%- include('../Partials/Aside/facultyside.ejs') %>
+    
+    <!--sidebar end-->
+
+    <!--main content start-->
+    <section id="main-content">
+      <section class="wrapper">
+        <div class="row">
+          <div class="col-lg-12">
+            <h3 class="page-header"><i class="fa fa-user" aria-hidden="true"></i></i>Namit Goel</h3>
+            <ol class="breadcrumb">
+              <li><i class="sfa fa-home"></i><a href="/facultyHome">Home</a></li>
+              <li><i class="icon_document_alt"></i>Profile</li>
+            </ol>
+          </div>
+
+       
+
+              <div class="container">
+                
+              
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Enrollment Id: </li>
+                <li class="list-group-item">Username: </li>
+                <li class="list-group-item">Email: </li>
+                <li class="list-group-item">Mobile Number :</li>
+                <li class="list-group-item">Department: </li>
+                <li class="list-group-item">College: </li>
+                <li class="list-group-item">Joining Date: </li>
+                <li class="list-group-item">Designation: </li>
+                <li class="list-group-item">Base Salary: </li>
+                <li class="list-group-item">Increment Rate: </li>
+                
+              </ul>
+            
+            </div>          
+   
+         <hr>
+      
+        <!-- Basic Forms & Horizontal Forms-->
+        <!-- page end-->
+      </section>
+    </section>
+    <!--main content end-->
+  </section>
+ 
+ <%- include('../Partials/Scripts/facultyscripts.ejs') %>
+
+</body>
+
+</html>

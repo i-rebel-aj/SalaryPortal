@@ -11,24 +11,6 @@ app.set("view engine", 'ejs')
 
 app.use("/", indexRoutes);
 
-
-app.get('/facultyHome', function(req, res){
-  res.render('faculty_home');
-});
-
-app.post('/facultyHome', function(req, res){
-  res.render('faculty_home');
-});
-
-app.get('/salaryRecpt', function(req, res){
-  res.render('salary');
-});
-
-app.get('/applyleave', function(req, res){
-  res.render('applyleave');
-});
-
-
 app.get('*', function(req, res){
   res.render('404');
 });
