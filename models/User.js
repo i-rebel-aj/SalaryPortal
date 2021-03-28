@@ -2,6 +2,7 @@ const mongoose=require("mongoose")
 const adminSchema=require("./Schemas/Admin")
 const facultySchema=require("./Schemas/Faculty")
 const options={discriminatorKey: 'Type'}
+const bcrypt = require("bcrypt");
 const userSchema=new mongoose.Schema(
     {
         //Common Entries Goes Here

@@ -42,8 +42,8 @@ router.get('/login', (req, res)=>{
   @Desc Display Signup Page
   @Access Public
 */
-router.get('/signup', (req,res)=>{
-    res.render('signup')
-})
+// router.get('/signup', (req,res)=>{
+//     res.render('signup')
+// })
 
 module.exports=router

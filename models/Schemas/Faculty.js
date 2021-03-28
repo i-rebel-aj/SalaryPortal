@@ -12,6 +12,13 @@ const facultySchema= new mongoose.Schema(
         enrolledDate:{
             type: Date,
             required: true
+        },
+        designation:{
+            type: String
+        },
+        retiredStatus:{
+            type: Boolean,
+            default: false
         }
     }
 )
