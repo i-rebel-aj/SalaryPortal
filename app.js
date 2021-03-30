@@ -38,10 +38,10 @@ app.use(function(req, res, next) {
     next();
 });
 //Requiring Routes
-//const indexRoutes=require("./routes/index")
+// const indexRoutes=require("./routes/index")
 const authRoutes=require('./routes/auth')
 //Middlewares
-//app.use("/", indexRoutes);
+// app.use("/", indexRoutes);
 app.use('/user/auth', authRoutes)
 app.get('*', function(req, res){
   res.render('404');
