@@ -47,6 +47,6 @@ app.get('*', function(req, res){
   res.render('404');
 });
 
-app.listen(3000, ()=>{
-    console.log(`Server has started at post 3000`)
+app.listen(process.env.PORT, ()=>{
+    console.log(`Server has started at post ${process.env.PORT}`)
 })

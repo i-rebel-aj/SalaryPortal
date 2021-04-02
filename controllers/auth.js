@@ -12,9 +12,9 @@ exports.addUser = async (req, res) => {
   const gender= req.body.gender
   const collegeName= req.body.collegeName
   if(pass!==confirmpass){
-    //   req.flash('error', 'Passwords do not match')
-    //   res.redirect('/user/auth/signup')
-    res.status(400).json({message: 'Passwords do not match'})
+      req.flash('error', 'Passwords do not match')
+      res.redirect('/user/auth/signup')
+    //res.status(400).json({message: 'Passwords do not match'})
   }else{
       try{
         if(type==='Faculty'){
@@ -33,9 +33,9 @@ exports.addUser = async (req, res) => {
             await faculty.save()
             req.session.isLoggedIn = true;
             req.session.user = faculty;
-            res.status(200).json({message: 'You are successfully Signed up and sessions has been set'})
-            // req.flash("success", "You are now signed in");
-            // res.redirect("/");
+            //res.status(200).json({message: 'You are successfully Signed up and sessions has been set'})
+            req.flash("success", "You are now signed in");
+            res.redirect("/");
         }
         //Backend logic for other types goes here
         // else if(type==='Admin'){
@@ -48,9 +48,9 @@ exports.addUser = async (req, res) => {
         //     //res.redirect("/");
         // }
         else{
-            res.status(400).json({message: 'Designation not selected'})
-            // req.flash("error", "Designation not selected");
-            // res.redirect("/user/auth/signup");
+            //res.status(400).json({message: 'Designation not selected'})
+            req.flash("error", "Designation not selected");
+            res.redirect("/user/auth/signup");
         }
       }catch(err){
           //Handle Errors

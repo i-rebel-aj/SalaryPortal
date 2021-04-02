@@ -4,6 +4,10 @@ const {addUser, userLogin, logout, editUser}=require('../controllers/auth')
 const {isAdmin,isFaculty}=require('../middlewares/authorization')
 const {isLoggedIn}=require('../middlewares/authentication')
 
+router.get('/login', (req, res)=>{
+    res.render('login')
+})
+
 /*===============================
     All POST routes goes here
 =================================*/
