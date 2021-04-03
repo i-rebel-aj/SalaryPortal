@@ -2,19 +2,20 @@ const { User} = require("../models/User");
 //To login a user
 exports.userLogin = async (req, res) => {
   try {
+    console.log(req.body)
     const email = req.body.email;
     const pass = req.body.password;
     const user = await User.findOne({ email: email });
     if (!user||!user.authenticate(pass)) {
-        // req.flash("error", "Invalid username or pass");
-        // res.redirect("/user/auth/login");
-        return res.status(400).json({message: 'Invalid username or password'})
+         req.flash("error", "Invalid username or pass");
+         res.redirect("/");
+        //return res.status(400).json({message: 'Invalid username or password'})
     } else {
-        // req.flash("success", "You are now signed in");
+        req.flash("success", "You are now signed in");
         req.session.isLoggedIn = true;
         req.session.user = user;
-        // res.redirect("/");
-        return res.status(200).json({message: 'Logged in Success'})
+        res.redirect("/");
+        //return res.status(200).json({message: 'Logged in Success'})
       
     }
   } catch (err) {
@@ -30,8 +31,8 @@ exports.logout = async(req,res)=>{
                 res.redirect('/error')
             } else {
                 req.session=null
-                //res.redirect('/');
-                return res.status(200).json({message: 'Log out Success'})
+                res.redirect('/');
+                //return res.status(200).json({message: 'Log out Success'})
             }
         });
     }

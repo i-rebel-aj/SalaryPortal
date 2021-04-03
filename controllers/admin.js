@@ -1,14 +1,7 @@
 const { Faculty, Staff, Management } = require("../models/User");
 exports.addUser = async (req, res) => {
   console.log('Request comming here')
-//   const type = req.body.Type
-//   const email = req.body.email
-//   const pass=req.body.password
-//   const name=req.body.name
-//   const confirmpass=req.body.confirmpass
-//   const gender= req.body.gender
-//   const collegeName= req.body.collegeName
-    const {type, email, pass, confirmpass, gender, instituteName, employeeId, department, enrolledDate, designation, retiredStaus}=req.body
+  const {type, email, pass, confirmpass, gender, instituteName, employeeId, department, enrolledDate, designation, retiredStaus}=req.body
 if(pass!==confirmpass){
       req.flash('error', 'Passwords do not match')
       res.redirect('/user/auth/signup')

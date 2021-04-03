@@ -1,35 +1,19 @@
+<%- include('./Partials/header') %> 
 <%- include('./Partials/MetaTag/adminMeta.ejs') %>
   <title>Login</title>
-<%- include('./Partials/Aside/login.ejs') %>
     <form id="form_id" class="login-form" method="post" name="myform" action="/user/auth/login">
       <div class="login-wrap">
         <p class="login-img"><i class="icon_lock_alt"></i></p>
         <div class="input-group">
           <span class="input-group-addon"><i class="icon_profile"></i></span>
-          <input type="text" class="form-control" name="email" id="email" placeholder="Email" />
+          <input type="text" class="form-control" name="email" id="email" placeholder="Email" required/>
         </div>
         <div class="input-group">
           <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-          <input type="password" class="form-control" name="password" id="password" placeholder="Password" />
+          <input type="password" class="form-control" name="password" id="password" placeholder="Password" required/>
         </div>
-        
-        <select id="form_action" class="browser-default form-control" onChange="select_change()" >
-          <option value="" disabled selected>Role</option>
-          <option value="/adminhome">Admin</option>
-          <option value="/facultyHome">Faculty</option>
-        </select>
-
-
-
-        <label class="checkbox">
-          <input type="checkbox" name="checkbox" value="remember-me"> Remember me
-          <span class="pull-right"> <a href="#"> Forgot Password?</a></span>
-        </label>
-
-        <button class="btn btn-primary btn-lg btn-block" type="button" value="Submit" onclick="myfunction()"> Submit</button>
-
+        <button class="btn btn-primary btn-lg btn-block" type="submit"> Submit</button>
         <button class="btn btn-primary btn-lg btn-block" type="reset" class="cancelbtn">Clear</button>
-        
       </div>
     </form>
-<%- include('./Partials/Scripts/adminscript.ejs') %>
+<%- include('./Partials/footer') %>

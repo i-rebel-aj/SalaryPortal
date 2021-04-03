@@ -1,6 +1,6 @@
 const express=require("express")
 const router=express.Router();
-const {addUser, userLogin, logout, editUser}=require('../controllers/auth')
+const {userLogin, logout}=require('../controllers/auth')
 const {isAdmin,isFaculty}=require('../middlewares/authorization')
 const {isLoggedIn}=require('../middlewares/authentication')
 
@@ -17,12 +17,13 @@ const {isLoggedIn}=require('../middlewares/authentication')
  @Access Public
 */
 // router.post('/signup', addUser)
-// /*
-//  @Route POST /user/auth/login
-//  @Desc Logins a user
-//  @Access Public
-// */
-// router.post('/login', userLogin)
+
+/*
+ @Route POST /user/auth/login
+ @Desc Logins a user
+ @Access Public
+*/
+router.post('/login', userLogin)
 
 router.post('/logout', isLoggedIn,logout)
 // router.get('/edit', isLoggedIn, (req, res)=>{
@@ -39,7 +40,7 @@ router.post('/logout', isLoggedIn,logout)
  @Access Public
 */
 router.get('/login', (req, res)=>{
-    res.render('../views/admin/adminhome')
+    res.render('login')
 })
 /*
   @Route GET /user/auth/signup
