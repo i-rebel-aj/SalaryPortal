@@ -54,6 +54,20 @@ const InstituteSchema=new mongoose.Schema(
         assignedAdmin:{
             type: mongoose.Schema.Types.ObjectId,
             ref: 'SalaryPortal_User'
+        },
+        insituteDetails:{
+            foundDate:{
+                type: Date
+            },
+            directorEmail:{
+                type: String
+            },
+            about:{
+                type: String
+            },
+            websiteLink:{
+                type: String
+            }
         }
         
     },{timestamps: true}

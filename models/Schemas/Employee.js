@@ -13,9 +13,13 @@ const employeeSchema= new mongoose.Schema(
             type: Date,
             required: true
         },
-        designation:{
-            type: String
-        },
+        designation:[
+            {
+                designationName: {
+                    type: String
+                }
+            }
+        ],
         retiredStatus:{
             type: Boolean,
             default: false

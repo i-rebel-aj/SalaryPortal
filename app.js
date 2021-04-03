@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require("connect-flash");
 const dotenv = require('dotenv');
+const morgan=require('morgan')
 dotenv.config();
 mongoose.connect(process.env.DB_Production, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
 .then(()=>{
@@ -14,6 +15,7 @@ mongoose.connect(process.env.DB_Production, {useNewUrlParser: true, useUnifiedTo
     console.log(err)
 })
 //Middle wares
+app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}));
 app.use(flash());
@@ -40,8 +42,10 @@ app.use(function(req, res, next) {
 //Requiring Routes
 const indexRoutes=require("./routes/index")
 const authRoutes=require('./routes/auth')
+const adminRoutes=require('./routes/admin')
 //Middlewares
-app.use("/", indexRoutes);
+app.use("/", indexRoutes)
+app.use('/admin', adminRoutes)
 app.use('/user/auth', authRoutes)
 app.get('*', function(req, res){
   res.render('404');

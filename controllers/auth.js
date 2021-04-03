@@ -2,7 +2,6 @@ const { User} = require("../models/User");
 //To login a user
 exports.userLogin = async (req, res) => {
   try {
-    console.log(req.body)
     const email = req.body.email;
     const pass = req.body.password;
     const user = await User.findOne({ email: email });
