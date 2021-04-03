@@ -141,7 +141,7 @@ table tr th { color: #688a7e;}
 
 .login-img-body{
 
-  background: url('../img/bg-1.jpg') no-repeat center center fixed;
+  /*background: url('../img/bg-1.jpg') no-repeat center center fixed;*/
 
   -webkit-background-size: cover;
 
@@ -155,7 +155,7 @@ table tr th { color: #688a7e;}
 
 .login-img2-body{
 
-  background: url('../img/bg-1.jpg') no-repeat center center fixed;
+  /*background: url('../img/bg-1.jpg') no-repeat center center fixed;*/
 
   -webkit-background-size: cover;
 
@@ -169,7 +169,8 @@ table tr th { color: #688a7e;}
 
 .login-img3-body{
 
-  background: url('../img/bg-1.jpg') no-repeat center center fixed;
+  /*background: url('../img/bg-1.jpg') no-repeat center center fixed;*/
+  /*background-color: green;*/
 
   -webkit-background-size: cover;
 

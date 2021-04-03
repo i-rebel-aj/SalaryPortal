@@ -1,46 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('../Partials/MetaTag/adminMeta.ejs') %>
 
-<head>
- <%- include('../Partials/MetaTag/adminMeta.ejs') %>
-  <title>Register Faculty</title>
+<title>Register Faculty</title>
 
-<body>
-
-  <!-- container section start -->
-  <section id="container" class="">
-    <!--header start-->
-     <%- include('../Partials/Navbar/adminNav.ejs') %>
-    <!--sidebar start-->
-    <%- include('../Partials/Aside/adminside.ejs') %>
-    <!--header end-->
-
-    <!--main content start-->
-    <section id="main-content">
-      <section class="wrapper">
-        <div class="row">
-
-          <div class="col-lg-12">
+<%- include('../Partials/Navbar/adminNav.ejs') %>
+<%- include('../Partials/Aside/adminside.ejs') %>
+          <div class="row">
+          <div class="col-lg-12">s
             <h3 class="page-header"><i class="fa fa-file-text-o"></i> Form </h3>
             <ol class="breadcrumb">
               <li><i class="fa fa-home"></i><a href="/adminhome">Home</a></li>
               <li><i class="icon_document_alt"></i>Forms</li>
               <li><i class="fa fa-file-text-o"></i>Form elements</li>  
             </ol>
-
-
           </div>
         </div>
         <br>
-        <!-- d-none -->
         <div class="row">
           <div class="col-lg-12">
             <section class="panel">
               <header class="panel-heading">
                 Form Elements
               </header>
-
-
               <div class="container mt-3">
                 <form action="#" method="post" class="form-horizontal ">
                       
@@ -142,23 +122,8 @@
 
                   <input type="submit" name="Register" class="form-control">
                 </form>
-
               </div>
-
             </section>
-
           </div>
         </div>
-        <!-- Basic Forms & Horizontal Forms-->
-        <!-- page end-->
-      </section>
-    </section>
-    <!--main content end-->
-  </section>
-  <!-- container section end -->
   <%- include('../Partials/Scripts/adminscript.ejs') %>
-
-
-</body>
-
-</html>

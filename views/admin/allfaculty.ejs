@@ -1,43 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('../Partials/MetaTag/adminMeta.ejs') %>
+  <title>All Faculty</title>
+<%- include('../Partials/Navbar/adminNav.ejs') %>
+<%- include('../Partials/Aside/adminside.ejs') %>
 
-<head>
- <%- include('../Partials/MetaTag/adminMeta.ejs') %>
-  <title>Leaves</title>
-</head>
-
-<body>
-
-  <!-- container section start -->
-  <section id="container" class="">
- <%- include('../Partials/Navbar/adminNav.ejs') %>
-
-    <!--sidebar start-->
-     <%- include('../Partials/Aside/adminside.ejs') %>
-
-    <!--main content start-->
-    <section id="main-content">
-      <section class="wrapper">
         <div class="row">
           <div class="col-lg-12">
             <h3 class="page-header"><i class="fa fa-file-text-o"></i>List</h3>
             <ol class="breadcrumb">
               <li><i class="fa fa-home"></i><a href="/adminhome">Home</a></li>
               <li><i class="icon_document_alt"></i>All Faculty</li>
-              <!-- <li><i class="fa fa-file-text-o"></i>Form elements</li>   -->
             </ol>
-
-
           </div>
         </div>
-        <!-- <br> -->
-        <!-- d-none -->
+
         <div class="row" id="form">
           <div class="col-lg-12">
             <section class="panel">
-              <!-- class="d-none" -->
                 <div id="info" class="d-none">
                   <input type="button" class="form-control" id="back" value="Back" onclick="goback(this)">
+                  
                   <form class="form-horizontal" method="post" action="/leaves">
                     <header class="panel-heading">
                       Faculty Detail
@@ -78,78 +59,50 @@
                         <input class="form-control" type="text" name="leavesReamaining" readonly="readonly" id="leavesRemaining">
                       </div>
                     </div>
-
-                    
-<!-- 
-                    <input type="submit" class="form-control" id="approve" value="Approve">
-                    <input type="button" class="form-control" id="leavedownload" value="Download PDF"> -->
                   </form>
-                </div>
-                
+                </div>                
               </section>
 
               <section>
                 <div>
-                  
-                
-              <table id="infotable" class="table table-hover" onclick="table(this)">
+                  <table id="infotable" class="table table-hover" onclick="table(this)">
 
-                <thead>
-                  <tr>
-                    <th scope="col">Enrollment No</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Joining Date</th>
-                    <th scope="col">Department</th>
-                    <th scope="col">Leaves Remaining</th>
+                    <thead>
+                      <tr>
+                        <th scope="col">Enrollment No</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Joining Date</th>
+                        <th scope="col">Department</th>
+                        <th scope="col">Leaves Remaining</th>
+                      </tr>
+                    </thead>
                     
-                  </tr>
-                </thead>
-                
-                <tbody>
-                  <tr onclick="row(this)">
-                    <td>12345678</td>
-                    <td>Rakesh Matam</td>
-                    <td>02-12-2019</td>
-                    <td>CSE</td>
-                    <td>12</td>
-                    
-                   
-                  </tr>
-                  <tr onclick="row(this)">
-                    <td>123456789</td>
-                    <td>Rakesh Matam</td>
-                    <td>15-06-2018</td>
-                    <td>CSE</td>
-                    <td>12</td>
-                    
-                    
-                  </tr>
-                  <tr onclick="row(this)">
-                    <td>1234567890</td>
-                    <td>Rakesh Matam</td>
-                    <td>03-01-2015</td>
-                    <td>CSE</td>
-                    <td>12</td>
-                    
-                   
-                  </tr>
-                </tbody>
-                
-              </table>
-              </div>
-            </section>
-
+                    <tbody>
+                      <tr onclick="row(this)">
+                        <td>12345678</td>
+                        <td>Rakesh Matam</td>
+                        <td>02-12-2019</td>
+                        <td>CSE</td>
+                        <td>12</td>
+                      </tr>
+                      <tr onclick="row(this)">
+                        <td>123456789</td>
+                        <td>Rakesh Matam</td>
+                        <td>15-06-2018</td>
+                        <td>CSE</td>
+                        <td>12</td>
+                      </tr>
+                      <tr onclick="row(this)">
+                        <td>1234567890</td>
+                        <td>Rakesh Matam</td>
+                        <td>03-01-2015</td>
+                        <td>CSE</td>
+                        <td>12</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            </div>
           </div>
-        </div>
-        <!-- Basic Forms & Horizontal Forms-->
-        <!-- page end-->
-      </section>
-    </section>
-    <!--main content end-->
-  </section>
-  <!-- container section end -->
   <%- include('../Partials/Scripts/adminscript.ejs') %>
-
-</body>
-
-</html>

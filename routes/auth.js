@@ -39,7 +39,7 @@ router.post('/logout', isLoggedIn,logout)
  @Access Public
 */
 router.get('/login', (req, res)=>{
-    res.render('login')
+    res.render('../views/admin/adminhome')
 })
 /*
   @Route GET /user/auth/signup
