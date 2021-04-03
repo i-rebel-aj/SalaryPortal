@@ -15,19 +15,22 @@ exports.addInstitute=async (req, res)=>{
         res.status(500).json({message: 'Something went wrong', err: err})
     }
 }
-exports.assignCollegeAdmin= async(req, res)=>{
+exports.assignInstituteAdmin= async(req, res)=>{
     try{
-        const email=req.body.adminEmail
-        const foundUser= User.findOne({email: email})
-        if(!foundUser){
-            //Change Details here
-            const newAdmin = {email :  email, password: pass, name: name, collegeName: collegeName}
-            const admin=new Admin(newAdmin)
-            await admin.save()
-        }else{
-            throw new Error('User already exists')
+        const {instituteName, email}= req.body
+        const foundinstitute=await Institute.findOne({instituteName: instituteName})
+        const foundUser= await User.findOne({email: email})
+        //Make sure that admin already doesnt exist
+        if(foundinstitute.assignedAdmin){
+            throw new Error('Admin already exists')
         }
+        if(foundUser.Type!=='Admin'){
+            throw new Error('This user can\'t be made into admin')
+        }
+        foundinstitute.assignedAdmin= foundUser._id
+        await foundinstitute.save()
+        return res.status(200).json({message: 'Assigned Admin success'})
     }catch(err){
-
+        return res.status(500).json({message: 'Server Error', error: err})
     }
 }

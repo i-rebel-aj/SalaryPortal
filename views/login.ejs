@@ -3,19 +3,19 @@
 <head>
 <title>Login</title>
 <!-- Include jQuery Library and File Here -->
-<script type="text/javascript" src="../public/js/login.js"></script>
+<script type="text/javascript" src="/public/js/login.js"></script>
 <!-- Include CSS File Here -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="../public/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/public/css/bootstrap.min.css" rel="stylesheet">
         <!-- bootstrap theme -->
-        <link href="../public/css/bootstrap-theme.css" rel="stylesheet">
+        <link href="/public/css/bootstrap-theme.css" rel="stylesheet">
         <!--external css-->
         <!-- font icon -->
-        <link href="../public/css/elegant-icons-style.css" rel="stylesheet"/>
-        <link href="../public/css/font-awesome.css" rel="stylesheet"/>
+        <link href="/public/css/elegant-icons-style.css" rel="stylesheet"/>
+        <link href="/public/css/font-awesome.css" rel="stylesheet"/>
         <!-- Custom styles -->
-        <link href="../public/css/style.css" rel="stylesheet">
-        <link href="../public/css/style-responsive.css" rel="stylesheet"/>
+        <link href="/public/css/style.css" rel="stylesheet">
+        <link href="/public/css/style-responsive.css" rel="stylesheet"/>
     </head>
 </head>
 <body class="login-img3-body">
@@ -23,15 +23,13 @@
 
 <!-- <h2>Dynamically Change Form Action Using Javascript</h2> -->
 
-    <form id="form_id" class="login-form" method="post" name="myform">
+    <form id="form_id" class="login-form" method="post" name="myform" action="/user/auth/login">
       <div class="login-wrap">
         <p class="login-img"><i class="icon_lock_alt"></i></p>
         <div class="input-group">
           <span class="input-group-addon"><i class="icon_profile"></i></span>
-          <input type="text" class="form-control" name="email" id="email" placeholder="Username" />
+          <input type="text" class="form-control" name="email" id="email" placeholder="Email" />
         </div>
-        
-
         <div class="input-group">
           <span class="input-group-addon"><i class="icon_key_alt"></i></span>
           <input type="password" class="form-control" name="password" id="password" placeholder="Password" />

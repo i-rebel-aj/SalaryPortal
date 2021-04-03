@@ -1,7 +1,7 @@
 const mongoose=require("mongoose")
-const facultySchema= new mongoose.Schema(
+const employeeSchema= new mongoose.Schema(
     {
-        enrollmentNumber:{
+        employeeID:{
             type: String,
             required: true
         },
@@ -22,4 +22,4 @@ const facultySchema= new mongoose.Schema(
         }
     }
 )
-module.exports=facultySchema
+module.exports=employeeSchema

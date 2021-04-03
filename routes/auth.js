@@ -4,9 +4,9 @@ const {addUser, userLogin, logout, editUser}=require('../controllers/auth')
 const {isAdmin,isFaculty}=require('../middlewares/authorization')
 const {isLoggedIn}=require('../middlewares/authentication')
 
-router.get('/login', (req, res)=>{
-    res.render('login')
-})
+// router.get('/login', (req, res)=>{
+//     res.render('login')
+// })
 
 /*===============================
     All POST routes goes here
@@ -16,13 +16,13 @@ router.get('/login', (req, res)=>{
  @Desc Adds a user to DB
  @Access Public
 */
-router.post('/signup', addUser)
-/*
- @Route POST /user/auth/login
- @Desc Logins a user
- @Access Public
-*/
-router.post('/login', userLogin)
+// router.post('/signup', addUser)
+// /*
+//  @Route POST /user/auth/login
+//  @Desc Logins a user
+//  @Access Public
+// */
+// router.post('/login', userLogin)
 
 router.post('/logout', isLoggedIn,logout)
 // router.get('/edit', isLoggedIn, (req, res)=>{

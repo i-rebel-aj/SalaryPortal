@@ -51,7 +51,7 @@ const InstituteSchema=new mongoose.Schema(
                 }
             }
         ],
-        collegeAdmin:{
+        assignedAdmin:{
             type: mongoose.Schema.Types.ObjectId,
             ref: 'SalaryPortal_User'
         }

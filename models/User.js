@@ -1,6 +1,6 @@
 const mongoose=require("mongoose")
 const adminSchema=require("./Schemas/Admin")
-const facultySchema=require("./Schemas/Faculty")
+const employeeSchema=require('./Schemas/Employee')
 const options={discriminatorKey: 'Type'}
 const bcrypt = require("bcrypt");
 const userSchema=new mongoose.Schema(
@@ -27,9 +27,9 @@ const userSchema=new mongoose.Schema(
             required: true
         },
         //Registeration of college here from other DB
-        collegeName:{
-            type: String,
-            required: true
+        institute:{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'SalaryPortal_Institute'
         },
         
     },options,{timestamps: true}
@@ -65,6 +65,8 @@ userSchema.methods = {
     }
 }
 const User=mongoose.model('SalaryPortal_User', userSchema)
-const Faculty=User.discriminator('Faculty', facultySchema)
+const Faculty=User.discriminator('Faculty', employeeSchema)
+const Staff=User.discriminator('Staff', employeeSchema)
+const Management=User.discriminator('Management', employeeSchema)
 const Admin=User.discriminator('Admin', adminSchema)
-module.exports={User, Faculty, Admin}
+module.exports={User, Faculty, Admin, Staff, Management}
