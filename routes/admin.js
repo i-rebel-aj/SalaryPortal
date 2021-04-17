@@ -1,9 +1,17 @@
 const express=require("express")
 const router=express.Router();
-const {userLogin, logout}=require('../controllers/auth')
+const {addUser}=require('../controllers/admin')
 const {isAdmin,isFaculty}=require('../middlewares/authorization')
 const {isLoggedIn}=require('../middlewares/authentication')
-
+/*===============================
+    All POST routes goes here
+=================================*/
+/*
+    @Route  POST  /admin/adduser
+    @Desc   For admin to add user
+    @Access Private
+*/
+router.post('/adduser', addUser)
 /*===============================
     All GET routes goes here
 =================================*/
@@ -24,7 +32,7 @@ router.get('/addemployee',(req, res)=>{
     res.render('./admin/registerFaculty')
 })
 /*
-    @Route  GET  /admin/employee
+    @Route  GET  /admin/employee/leaves
     @Desc   To View all employee
     @Access Private
 

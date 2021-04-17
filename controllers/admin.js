@@ -1,6 +1,7 @@
 const { Faculty, Staff, Management } = require("../models/User")
 //Admin Only access
 exports.addUser = async (req, res) => {
+    console.log(req.body)
   const { type, email, pass, confirmpass, gender, employeeId, department, enrolledDate, designation, retiredStaus, name}=req.body
     if(pass!==confirmpass){
         req.flash('error', 'Passwords do not match')

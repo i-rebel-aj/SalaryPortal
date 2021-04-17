@@ -43,14 +43,16 @@ app.use(function(req, res, next) {
 const indexRoutes=require("./routes/index")
 const authRoutes=require('./routes/auth')
 const adminRoutes=require('./routes/admin')
+const superUserRoutes=require('./routes/superUser')
 //Middlewares
 app.use("/", indexRoutes)
 app.use('/admin', adminRoutes)
 app.use('/user/auth', authRoutes)
-app.get('*', function(req, res){
-  res.render('404');
+app.use('/superuser', superUserRoutes)
+//If Errored page is fetched
+app.get('*', (req, res)=>{
+  res.render('404')
 });
-
 app.listen(process.env.PORT, ()=>{
     console.log(`Server has started at post ${process.env.PORT}`)
 })

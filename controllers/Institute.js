@@ -10,10 +10,12 @@ exports.addInstitute=async (req, res)=>{
         }
         const institute= new Institute(newInstitute)
         await institute.save()
-        return res.status(200).json({message: 'Institute Added Successfully'})
+        req.flash('success', 'Institute added Success')
+        res.redirect('/superadmin')
     }
     catch(err){
-        res.status(500).json({message: 'Something went wrong', err: err})
+        req.flash('error', 'Institute added Success')
+        res.redirect('/superadmin')
     }
 }
 exports.assignInstituteAdmin= async(req, res)=>{
