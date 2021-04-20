@@ -4,6 +4,7 @@ const InstituteSchema=new mongoose.Schema(
         //Common Entries Goes Here
         instituteName:{
             type: String,
+            unique: true,
             required: true
         },
         employeeInfo:[

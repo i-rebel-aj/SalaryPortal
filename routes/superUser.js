@@ -1,8 +1,7 @@
 const express=require("express")
 const router=express.Router();
-const {userLogin, logout}=require('../controllers/auth')
-const {superUserLogin, addInstituteAdmin, addSuperUser}=require('../controllers/superUser')
-const {addInstitute}=require('../controllers/Institute')
+const {superUserLogin, displayAddAdminForum}=require('../controllers/superUser')
+const {addInstitute, getAllInstitutes,addInstituteAdmin}=require('../controllers/Institute')
 const {isSuperuser}=require('../middlewares/authorization')
 const {isLoggedIn}=require('../middlewares/authentication')
 /*===============================
@@ -13,7 +12,7 @@ const {isLoggedIn}=require('../middlewares/authentication')
     @Access Private
     @Desc A superuser can another superuser
 */
-router.post('/', addSuperUser)
+//router.post('/', addSuperUser)
 /*
     @Route POST /superuser/login
     @Access Private
@@ -25,13 +24,13 @@ router.post('/login', superUserLogin)
     @Access Private
     @Desc A superuser can add another institute
 */
-router.post('/insititute',[isLoggedIn, isSuperuser],addInstitute)
+router.post('/institute',[isLoggedIn, isSuperuser],addInstitute)
 /*
-    @Route POST /superuser/institute/:id/assignadmin
+    @Route POST /superuser/admin
     @Access Private
     @Desc A superuser can assign Admin to the institute
 */
-router.post('/institute/:id/assignadmin',[isLoggedIn, isSuperuser], addInstituteAdmin)
+router.post('/admin', [isLoggedIn, isSuperuser], addInstituteAdmin)
 
 /*===============================
     All GET routes goes here
@@ -60,6 +59,16 @@ router.get('/addinstitute',[isLoggedIn, isSuperuser], async (req, res)=>{
 router.get('/login', async (req, res)=>{
     res.render('login', {isSuperUser: true})
 })
-
-
+/*
+    @Route GET /superuser/login
+    @Access Private
+    @Desc To Display all institutes
+*/
+router.get('/institute',[isLoggedIn, isSuperuser], getAllInstitutes)
+/*
+    @Route GET /superuser/addadmin
+    @Access Private
+    @Desc To Display add admin form
+*/
+router.get('/addadmin', [isLoggedIn, isSuperuser], displayAddAdminForum)
 module.exports=router

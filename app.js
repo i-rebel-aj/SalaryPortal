@@ -15,7 +15,7 @@ mongoose.connect(process.env.DB_Production, {useNewUrlParser: true, useUnifiedTo
     console.log(err)
 })
 //Middle wares
-app.use(morgan('dev'))
+//app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}));
 app.use(flash());

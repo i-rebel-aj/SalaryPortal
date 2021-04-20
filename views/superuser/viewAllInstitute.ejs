@@ -1,0 +1,32 @@
+<%- include('../Partials/MetaTag/adminMeta.ejs') %>
+<title>Super Admin</title>
+<%- include('../Partials/Navbar/adminNav.ejs') %>
+<%- include('../Partials/flash_messages') %>
+<%- include('../Partials/SideBar/superUserSideBar.ejs') %>
+<div class="container">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Institute Name</th>
+            <th scope="col">Admin Email</th>
+            <th scope="col">Admin Name</th>
+          </tr>
+        </thead>
+        <tbody>
+         <% institutes.forEach(institute => { %>
+             <tr>
+                 <td><%= institute.instituteName %> </td>
+                 <% if(typeof(institute.assignedAdmin)!=='undefined'){%>
+                    <td><%=institute.assignedAdmin.email%></td>
+                    <td><%=institute.assignedAdmin.name%></td>
+                <%}else{%> 
+                    <td>No Admin Created for this Institute </td>
+                    <td>NA</td>
+                <%} %> 
+             </tr>
+         <% }); %> 
+        </tbody>
+      </table>
+</div>
+
+<%- include('../Partials/Scripts/adminscript.ejs') %>
