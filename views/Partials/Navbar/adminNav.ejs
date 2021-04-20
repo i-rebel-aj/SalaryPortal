@@ -6,28 +6,25 @@
       <div class="toggle-nav">
         <div class="icon-reorder tooltips" data-placement="bottom"><i class="icon_menu"></i></div>
       </div>
-
       <!--logo start-->
-      <a href="adminhome" class="logo">Indian Institute of Information Technology <span class="lite">Admin</span></a>
-      <!--logo end-->
-
+      <% if(typeof(isSuperUser)!=='undefined' && isSuperUser===true){%>
+        <a href="/superadmin" class="logo">Salary Portal <span class="lite">Super Admin</span></a>
+        <%}else{%>
+          <a href="/admin" class="logo">Indian Institute of Information Technology <span class="lite">Admin</span></a>
+      <%} %> 
       <div class="top-nav notification-row">
-        <!-- notificatoin dropdown start-->
         <ul class="nav pull-right top-menu">
-
               <div class="log-arrow-up"></div>
               <li class="eborder-top">
                 <a href="#"><i class="icon_profile"></i> My Profile</a>
               </li>
-
               <li>
                 <a href="/"><i class="icon_key_alt"></i> Log Out</a>
               </li>
-            <!-- </ul> -->
           </li>
           <!-- user login dropdown end -->
         </ul>
         <!-- notificatoin dropdown end-->
       </div>
-    </header>
-    <!--header end-->
+</header>
+<%- include('../flash_messages') %>

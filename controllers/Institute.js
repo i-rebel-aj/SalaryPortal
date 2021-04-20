@@ -10,40 +10,63 @@ exports.addInstitute=async (req, res)=>{
         }
         const institute= new Institute(newInstitute)
         await institute.save()
-        return res.status(200).json({message: 'Institute Added Successfully'})
+        req.flash('success', 'Institute added Success')
+        res.redirect('/superuser')
     }
     catch(err){
-        res.status(500).json({message: 'Something went wrong', err: err})
-    }
-}
-exports.assignInstituteAdmin= async(req, res)=>{
-    try{
-        const {email}= req.body
-        const foundinstitute=await Institute.findById(req.params.id)
-        const foundUser= await User.findOne({email: email})
-        //Make sure that admin already doesnt exist
-        if(foundinstitute.assignedAdmin){
-            throw new Error('Admin already exists')
-        }
-        if(foundUser.Type!=='Admin'){
-            throw new Error('This user can\'t be made into admin')
-        }
-        console.log(`foundUser.institite ${foundUser.institute}`)
-        if(foundUser.institute!==req.params.id){
-            throw new Error('This user is not the member of this institute')
-        }
-        foundinstitute.assignedAdmin= foundUser._id
-        await foundinstitute.save()
-        return res.status(200).json({message: 'Assigned Admin success'})
-    }catch(err){
-        return res.status(500).json({message: 'Server Error', error: err})
+        req.flash('error', `Something Went wrong ${err.message}`)
+        res.redirect('/superuser')
     }
 }
 exports.getAllInstitutes= async(req, res)=>{
     try{
-        const allInstitues= await Institute.find({})
-        return res.status(200).json({instituteList: allInstitues})
+        const allInstitues= await Institute.find({}).populate('assignedAdmin', 'name email')
+        console.log(allInstitues)
+        res.render('./superuser/viewAllInstitute', {institutes: allInstitues})
     }catch(err){
-        return res.status(500).json({message: 'Server Error', err: err})
+        req.flash('error', `Something Went wrong ${err.message}`)
+        res.redirect('/superuser')
     }
 }
+
+exports.addInstituteAdmin = async (req, res) => {
+    console.log(req.body)
+    const email = req.body.email
+    const pass=req.body.password
+    const name=req.body.name
+    const confirmpass=req.body.confirmpass
+    const gender= req.body.gender
+    const instituteName= req.body.instituteName
+    if(pass!==confirmpass){
+      return res.status(400).json({message: 'Passwords do not match'})
+    }else{
+        try{
+          const foundInstitute= await Institute.findOne({instituteName: instituteName})
+          if(!foundInstitute){
+              throw new Error('Institute Not Found')
+          }
+          if(typeof(foundInstitute.assignedAdmin)!=='undefined'&&foundInstitute.assignedAdmin!==null){
+            throw new Error('Admin already exists')
+          }
+          const newAdmin={
+              email: email, 
+              password: pass, 
+              name: name,
+              gender: gender,
+              institute: foundInstitute._id
+          } 
+          //Saving Admin to DB  
+          const admin=new Admin(newAdmin)
+          await admin.save()
+          //Dangerous Operation
+          foundInstitute.assignedAdmin=admin._id
+          await foundInstitute.save()
+          req.flash("success", "Admin Added Success, please assign him");
+          res.redirect("/superuser");
+        }catch(err){
+            //Handle Errors
+            req.flash('error', `Something Went wrong ${err.message}`)
+            res.redirect('/superuser')
+          } 
+      }
+  }

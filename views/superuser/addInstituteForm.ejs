@@ -1,0 +1,16 @@
+<%- include('../Partials/MetaTag/adminMeta.ejs') %>
+<title>Super Admin| Add Institute Form</title>
+<%- include('../Partials/Navbar/adminNav.ejs') %>
+<%- include('../Partials/flash_messages') %>
+<%- include('../Partials/SideBar/superUserSideBar.ejs') %>
+<div class="container">
+    <form action="/superuser/institute" method="POST">
+        <div class="form-group">
+          <label for="exampleInputPassword1">Institute Name</label>
+          <input type="text" class="form-control" name="instituteName" required>
+        </div>
+        <label>Rest Inputs Comming Soon</label>
+        <button type="submit" class="btn btn-primary btn-md">Submit</button>
+      </form>
+</div>
+<%- include('../Partials/Scripts/adminscript.ejs') %>

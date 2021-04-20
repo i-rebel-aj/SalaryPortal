@@ -1,48 +1,74 @@
 const express=require("express")
 const router=express.Router();
-const {userLogin, logout}=require('../controllers/auth')
-const {superUserLogin, addInstituteAdmin, addSuperUser}=require('../controllers/superUser')
-const {addInstitute}=require('../controllers/Institute')
+const {superUserLogin, displayAddAdminForum}=require('../controllers/superUser')
+const {addInstitute, getAllInstitutes,addInstituteAdmin}=require('../controllers/Institute')
 const {isSuperuser}=require('../middlewares/authorization')
 const {isLoggedIn}=require('../middlewares/authentication')
 /*===============================
     All POST routes goes here
 =================================*/
 /*
-@Route POST /superadmin
-@Access Private
-@Desc A superuser can another superuser
+    @Route POST /superuser
+    @Access Private
+    @Desc A superuser can another superuser
 */
-router.post('/', addSuperUser)
+//router.post('/', addSuperUser)
 /*
-@Route POST /superadmin/login
-@Access Private
-@Desc Login for a superuser
+    @Route POST /superuser/login
+    @Access Private
+    @Desc Login for a superuser
 */
 router.post('/login', superUserLogin)
 /*
-@Route POST /superadmin/institute
-@Access Private
-@Desc A superuser can add another institute
+    @Route POST /superuser/institute
+    @Access Private
+    @Desc A superuser can add another institute
 */
-router.post('/insititute', addInstitute)
+router.post('/institute',[isLoggedIn, isSuperuser],addInstitute)
 /*
-@Route POST /superadmin/institute/:id/assignadmin
-@Access Private
-@Desc A superuser can assign Admin to the institute
+    @Route POST /superuser/admin
+    @Access Private
+    @Desc A superuser can assign Admin to the institute
 */
-router.post('/institute/:id/assignadmin', addInstituteAdmin)
+router.post('/admin', [isLoggedIn, isSuperuser], addInstituteAdmin)
 
 /*===============================
     All GET routes goes here
 =================================*/
-//Display Super user Panel
-//Options, 1. Add Institute and Add Institute Admin
-// router.get('/', (req, res)=>{
-//     res.render('./admin/adminhome')
-// })
-// router.get('/addemployee',(req, res)=>{
-//     res.render('./admin/registerFaculty')
-// } )
-
+/*
+    @Route GET /superuser
+    @Access Private
+    @Desc Display Super User Home Page
+*/
+router.get('/',[isLoggedIn, isSuperuser], async (req, res)=>{
+    res.render('superuser/superUserHome', {isSuperUser: true})
+})
+/*
+    @Route GET /superuser/addinstitute
+    @Access Private
+    @Desc Render Add Institute Form 
+*/
+router.get('/addinstitute',[isLoggedIn, isSuperuser], async (req, res)=>{
+    res.render('superuser/addInstituteForm', {isSuperUser: true})
+})
+/*
+    @Route GET /superuser/login
+    @Access Private
+    @Desc Display Super User Login Page
+*/
+router.get('/login', async (req, res)=>{
+    res.render('login', {isSuperUser: true})
+})
+/*
+    @Route GET /superuser/login
+    @Access Private
+    @Desc To Display all institutes
+*/
+router.get('/institute',[isLoggedIn, isSuperuser], getAllInstitutes)
+/*
+    @Route GET /superuser/addadmin
+    @Access Private
+    @Desc To Display add admin form
+*/
+router.get('/addadmin', [isLoggedIn, isSuperuser], displayAddAdminForum)
 module.exports=router

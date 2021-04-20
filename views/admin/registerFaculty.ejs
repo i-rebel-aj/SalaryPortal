@@ -3,23 +3,12 @@
 <title>Register Faculty</title>
 
 <%- include('../Partials/Navbar/adminNav.ejs') %>
-<%- include('../Partials/Aside/adminside.ejs') %>
-          <div class="row">
-          <div class="col-lg-12">s
-            <h3 class="page-header"><i class="fa fa-file-text-o"></i> Form </h3>
-            <ol class="breadcrumb">
-              <li><i class="fa fa-home"></i><a href="/adminhome">Home</a></li>
-              <li><i class="icon_document_alt"></i>Forms</li>
-              <li><i class="fa fa-file-text-o"></i>Form elements</li>  
-            </ol>
-          </div>
-        </div>
-        <br>
+<%- include('../Partials/SideBar/adminside.ejs') %>
         <div class="row">
           <div class="col-lg-12">
             <section class="panel">
               <header class="panel-heading">
-                Form Elements
+                Add Employees
               </header>
               <div class="container mt-3">
                 <form action="#" method="post" class="form-horizontal ">
@@ -28,35 +17,22 @@
                     <input type="file" class="custom-file-input" id="customFile" name="filename">
                     <label class="custom-file-label" for="customFile">Choose csv File</label>
                   </div>
-
                   <div class="mt-3" form-group>
-                    <button type="button" class="form-control btn btn-primary" onclick="printData()">Submit</button>
+                    <button type="button" class="btn btn-primary btn-md">Submit</button>
                   </div>
                 </form>
               </div>
-
-                <hr>
-                <div id="values">
-                  
-                </div>
+              <h3 style="text-align: center;">OR</h3>
               <div class="panel-body">
 
                 <form class="form-horizontal" id="form" method="post" action="/success">
 
                   <div class="form-group">
-                    <label class="col-sm-2 control-label">First Name</label>
+                    <label class="col-sm-2 control-label">Full Name</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" name="fname" required>
+                      <input type="text" class="form-control" name="name" required>
                     </div>
                   </div>
-
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Last Name</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" name="lname">
-                    </div>
-                  </div>
-
                   <div class="form-group">
                     <label class="control-label col-lg-2" for="select" required>Department</label>
                     <div class="col-lg-10">
@@ -70,26 +46,18 @@
                   
 
                   <div class="form-group">
-                    <label class="col-sm-2 control-label">Type</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" name="type" required>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="control-label col-lg-2" for="select" required>Institute Name</label>
+                    <label class="control-label col-lg-2" for="select" required>Type</label>
                     <div class="col-lg-10">
                       <select class="form-control" name="institute">
-                        <option value="" selected disabled></option>
-                            <option>Indian Institute of Information Technology Guwahati</option>
-                            <option>Indian Institute of Technology Guwahati</option>
-                            <option>Guwahati University</option>
+                        <option value="" selected disabled>Choose One</option>
+                            <option>Faculty</option>
+                            <option>Staff</option>
+                            <option>Management</option>
                       </select>
                     </div>
                   </div>
-
                   <div class="form-group">
-                    <label class="col-sm-2 control-label">Registration Id</label>
+                    <label class="col-sm-2 control-label">Employee Id</label>
                     <div class="col-sm-10">
                       <input type="text" class="form-control" name="reg_id" required>
                     </div>
@@ -108,18 +76,29 @@
                       <input type="text" class="form-control" name="email" required>
                     </div>
                   </div>
-
+                  <div class="form-group">
+                    <label class="control-label col-lg-2" for="select" required>Designation</label>
+                    <div class="col-lg-10">
+                      <select class="form-control" name="institute">
+                        <option value="" selected disabled>Choose One</option>
+                            <option>Designation 1</option>
+                            <option>Designation 2</option>
+                            <option>Designation 3</option>
+                      </select>
+                    </div>
+                  </div>
                   <div class="form-group">
                     <label class="col-sm-2 control-label">Password</label>
                     <div class="col-sm-10">
                       <input class="form-control" type="password" name="pass" id="pass" required>
                     </div>
                   </div>
-
-                  <button class = "generate" id="gen_pass" type="button">
-                    Generate Password
-                  </button>
-
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Confirm Password</label>
+                    <div class="col-sm-10">
+                      <input class="form-control" type="password" name="pass" id="pass" required>
+                    </div>
+                  </div>
                   <input type="submit" name="Register" class="form-control">
                 </form>
               </div>
