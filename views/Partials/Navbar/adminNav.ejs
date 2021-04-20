@@ -7,7 +7,7 @@
         <div class="icon-reorder tooltips" data-placement="bottom"><i class="icon_menu"></i></div>
       </div>
       <!--logo start-->
-      <% if(isSuperUser??false){%>
+      <% if(typeof(isSuperUser)!=='undefined' && isSuperUser===true){%>
         <a href="/superadmin" class="logo">Salary Portal <span class="lite">Super Admin</span></a>
         <%}else{%>
           <a href="/admin" class="logo">Indian Institute of Information Technology <span class="lite">Admin</span></a>

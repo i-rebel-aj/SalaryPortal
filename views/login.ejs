@@ -1,7 +1,13 @@
 <%- include('./Partials/header') %> 
 <%- include('./Partials/MetaTag/adminMeta.ejs') %>
-  <title>Login</title>
+<%- include('./Partials/flash_messages') %>
+<% if(typeof(isSuperUser)!=='undefined' && isSuperUser===true){%>
+  <h1>Super User Login Here</h1>
+    <form id="form_id" class="login-form" method="post" name="myform" action="/superuser/login">
+  <%}else{%>
+    <h1>Users Login Here</h1>
     <form id="form_id" class="login-form" method="post" name="myform" action="/user/auth/login">
+<%} %> 
       <div class="login-wrap">
         <p class="login-img"><i class="icon_lock_alt"></i></p>
         <div class="input-group">
@@ -13,7 +19,6 @@
           <input type="password" class="form-control" name="password" id="password" placeholder="Password" required/>
         </div>
         <button class="btn btn-primary btn-lg btn-block" type="submit"> Submit</button>
-        <button class="btn btn-primary btn-lg btn-block" type="reset" class="cancelbtn">Clear</button>
       </div>
     </form>
 <%- include('./Partials/footer') %>

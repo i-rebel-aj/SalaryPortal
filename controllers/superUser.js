@@ -63,13 +63,13 @@ exports.superUserLogin=async (req, res)=>{
         const user = await Superuser.findOne({ email: email });
         if (!user||!user.authenticate(pass)) {
              req.flash("error", "Invalid username or pass");
-             res.redirect("/");
+             res.redirect("/superuser/login");
             //return res.status(400).json({message: 'Invalid username or password'})
         } else {
             req.flash("success", "You are now signed in");
             req.session.isLoggedIn = true;
             req.session.user = user;
-            res.redirect("/");
+            res.redirect("/superuser");
             //return res.status(200).json({message: 'Logged in Success'})
         }
       } catch (err) {

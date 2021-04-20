@@ -36,15 +36,30 @@ router.post('/institute/:id/assignadmin',[isLoggedIn, isSuperuser], addInstitute
 /*===============================
     All GET routes goes here
 =================================*/
-//Display Super user Panel
-router.get('/', (req, res)=>{
+/*
+    @Route GET /superuser
+    @Access Private
+    @Desc Display Super User Home Page
+*/
+router.get('/',[isLoggedIn, isSuperuser], async (req, res)=>{
     res.render('superuser/superUserHome', {isSuperUser: true})
 })
-router.get('/addinstitute', async (req, res)=>{
+/*
+    @Route GET /superuser/addinstitute
+    @Access Private
+    @Desc Render Add Institute Form 
+*/
+router.get('/addinstitute',[isLoggedIn, isSuperuser], async (req, res)=>{
     res.render('superuser/addInstituteForm', {isSuperUser: true})
 })
-// router.get('/addemployee',(req, res)=>{
-//     res.render('./admin/registerFaculty')
-// } )
+/*
+    @Route GET /superuser/login
+    @Access Private
+    @Desc Display Super User Login Page
+*/
+router.get('/login', async (req, res)=>{
+    res.render('login', {isSuperUser: true})
+})
+
 
 module.exports=router
