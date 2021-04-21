@@ -14,7 +14,8 @@ const InstituteSchema=new mongoose.Schema(
                     enum: ['Faculty', 'Staff', 'Management']
                 },
                 designationName: {
-                    type: String
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: 'SalaryPortal_Department'
                 },
                 stipendCurrency: {
                     type: String

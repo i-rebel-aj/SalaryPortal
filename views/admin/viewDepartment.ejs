@@ -1,0 +1,31 @@
+<%- include('../Partials/MetaTag/adminMeta.ejs') %>
+<title>Super Admin</title>
+<%- include('../Partials/Navbar/adminNav.ejs') %>
+<%- include('../Partials/flash_messages') %>
+<%- include('../Partials/SideBar/adminside.ejs') %>
+<div class="container">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Department Name</th>
+            <th scope="col">Contains</th>
+          </tr>
+        </thead>
+        <tbody>
+         <% departments.forEach(department => { %>
+             <tr>
+                 <td><%= department.departmentName %> </td>
+                 <td>
+                    <ul>
+                        <% department.containsEmployee.forEach(employee=>{%>
+                            <li><%= employee %> </li>    
+                        <%}) %> 
+                        </ul>
+                 </td>
+             </tr>
+         <% }); %> 
+        </tbody>
+      </table>
+</div>
+
+<%- include('../Partials/Scripts/adminscript.ejs') %>
