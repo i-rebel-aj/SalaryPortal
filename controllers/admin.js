@@ -1,4 +1,5 @@
 const { Faculty, Staff, Management } = require("../models/User")
+const {User,Admin} = require("../models/User");
 //Admin Only access
 exports.addUser = async (req, res) => {
     console.log(req.body)
@@ -53,4 +54,20 @@ exports.addUser = async (req, res) => {
 }
 exports.registerPosition =async(req, res)=>{
     
+}
+
+exports.leave = async(req, res)=>{
+    console.log(req.body)
+    const {enrollment,status} = req.body;
+    const foundUser=await User.find({employeeId: enrollment});
+    foundUser.appliedLeave.find({status : 'Waiting'}).status = status;
+    res.redirect('/admin/employee/leaves')
+}
+
+exports.viewleaves = async(req,res)=>{
+    const users = User.find({})
+    for(user in users){
+        console.log(user.appliedLeave)   
+    }
+    res.render('./admin/viewleaves')
 }

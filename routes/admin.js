@@ -1,6 +1,6 @@
 const express=require("express")
 const router=express.Router();
-const {addUser}=require('../controllers/admin')
+const {addUser,leave,viewleaves}=require('../controllers/admin')
 const {viewAllDepartment, viewDepartmentForm, addDepartment}=require('../controllers/department')
 const {isAdmin,isFaculty}=require('../middlewares/authorization')
 const {isLoggedIn}=require('../middlewares/authentication')
@@ -19,6 +19,12 @@ router.post('/adduser',[isLoggedIn, isAdmin], addUser)
     @Access Private
 */
 router.post('/department', [isLoggedIn, isAdmin], addDepartment)
+/*
+    @Route  POST  /admin/employee/leave
+    @Desc   For admin to accept/reject Leave
+    @Access Private
+*/
+router.post('/employee/leave', leave)
 /*===============================
     All GET routes goes here
 =================================*/
@@ -43,18 +49,8 @@ router.get('/addemployee',[isLoggedIn, isAdmin], (req, res)=>{
     @Desc   To View all employee
     @Access Private
 */
-router.get('/employee/leaves',[isLoggedIn, isAdmin], (req, res)=>{
-    res.render('./admin/viewleaves')
-})
+router.get('/employee/leaves',[isLoggedIn, isAdmin], viewleaves) 
 
-/*
-    @Route  GET  /admin/employee/leaves
-    @Desc   To Admin to add employee
-    @Access Private
-*/
-router.get('/employee/leaves',[isLoggedIn, isAdmin], (req, res)=>{
-    res.render('./admin/viewleaves')
-})
 /*
     @Route  GET  /admin/adddepartment
     @Desc   To View add department form
