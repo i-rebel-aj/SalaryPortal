@@ -46,7 +46,7 @@ router.get('/addemployee',[isLoggedIn, isAdmin], (req, res)=>{
 })
 /*
     @Route  GET  /admin/employee/leaves
-    @Desc   To View all employee
+    @Desc   To View all employee leaves
     @Access Private
 */
 router.get('/employee/leaves',[isLoggedIn, isAdmin], viewleaves) 
