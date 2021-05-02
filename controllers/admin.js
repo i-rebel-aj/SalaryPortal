@@ -17,7 +17,7 @@ exports.addUser = async (req, res) => {
                 instituteId:res.locals.currentUser.institute,
                 department: department,
                 enrolledDate: enrolledDate,
-                employeeId: employeeId,
+                employeeID: employeeId,
                 designation: designation
             }
             if(retiredStaus==='Yes'){
