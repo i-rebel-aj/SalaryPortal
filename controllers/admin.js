@@ -83,14 +83,14 @@ exports.leave = async(req, res)=>{
 
 exports.viewleaves = async(req,res)=>{
     // console.log(req.session.user.institute)
-    const users = await User.find({ institute: req.session.user.institute,Type: 'Faculty'}).populate('department','departmentName')
+    const users = await User.find({ institute: req.session.user.institute,Type: 'Faculty'})
     let waitingLeaves = [];
     for(const user of users){
         const leaves = user.appliedLeave
         let userLeave = {
             employeeId: user.employeeID,
             name: user.name,
-            department: user.department.departmentName,
+            designation: user.designation._id,
             leavesReamaining: 12,
             leaves: leaves
         }
