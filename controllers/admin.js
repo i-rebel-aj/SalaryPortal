@@ -1,11 +1,12 @@
 const { Faculty, Staff, Management } = require("../models/User")
+const { Department } = require('../models/Department')
 //Admin Only access
 exports.addUser = async (req, res) => {
-    console.log(req.body)
+  //console.log(req.body)
   const { type, email, pass, confirmpass, gender, employeeId, department, enrolledDate, designation, retiredStaus, name}=req.body
     if(pass!==confirmpass){
         req.flash('error', 'Passwords do not match')
-        res.redirect('/user/auth/signup')
+        res.redirect('back')
     }else{
         try{
             const newUser={
@@ -16,8 +17,7 @@ exports.addUser = async (req, res) => {
                 instituteId:res.locals.currentUser.institute,
                 department: department,
                 enrolledDate: enrolledDate,
-                employeeId: employeeId,
-                designation: designation
+                employeeID: employeeId
             }
             if(retiredStaus==='Yes'){
                 newUser.retiredStaus=true
@@ -36,7 +36,7 @@ exports.addUser = async (req, res) => {
             }else{
                 throw new Error('Invalid Type Selected')
             } 
-            req.flash("success", "Email already exists")
+            req.flash("success", "Employee Added")
             res.redirect('/admin')
         }catch(err){
             console.log(err)
@@ -51,6 +51,13 @@ exports.addUser = async (req, res) => {
         } 
     }
 }
-exports.registerPosition =async(req, res)=>{
-    
+exports.renderRegisterationPage=async (req, res)=>{
+    try{
+        console.log(`Institute Id id ${req.session.user.institute}`)
+        const foundDepartment=await Department.find({associatedInstituteId: req.session.user.institute})
+        res.render('./admin/registerEmployee', {departments: foundDepartment})
+    }catch(err){
+        console.log(err)
+        res.redirect('/error')
+    }
 }

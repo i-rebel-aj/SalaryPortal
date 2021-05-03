@@ -1,0 +1,41 @@
+<%- include('../Partials/MetaTag/adminMeta.ejs') %>
+<title>Admin | Add Department</title>
+<%- include('../Partials/Navbar/adminNav.ejs') %>
+<%- include('../Partials/flash_messages') %>
+<%- include('../Partials/SideBar/adminside.ejs') %>
+<div class="container">
+    <!-- employeeType, designationName, department, stipedCurrency, annualbasePay, paidLeavesPermitted -->
+    <h2>CSV File Button Goes here</h2>
+    <form action="/admin/employeeinfo" method="POST">
+            <div class="form-group">
+            <label for="exampleInputPassword1">Employee Type</label>
+            <select name="employeeType" required>
+                <option value="Staff">Staff</option>
+                <option value="Faculty">Faculty</option>
+                <option value="Management">Management</option>
+            </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Designation Name</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" name="designationName">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Department</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" name="department">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Stipend Currency</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" name="stipedCurrency">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Annual Base Pay (Annual)</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" name="annualbasePay">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Paid Leaves Permitted (Annual)</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" name="paidLeavesPermitted">
+            </div>
+        <button type="submit" class="btn btn-primary btn-md">Submit</button>
+    </form>
+</div>
+<%- include('../Partials/Scripts/adminscript.ejs') %>

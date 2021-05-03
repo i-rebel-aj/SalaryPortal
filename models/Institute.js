@@ -22,7 +22,8 @@ const InstituteSchema=new mongoose.Schema(
                     ref: 'SalaryPortal_Department'
                 },
                 stipendCurrency: {
-                    type: String
+                    type: String,
+                    default: 'INR'
                     //Add Enums
                 },
                 annualbasePay: {
