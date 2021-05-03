@@ -1,12 +1,12 @@
 const { Faculty, Staff, Management } = require("../models/User")
-const { Department } = require('../models/Department')
+const {User,Admin} = require("../models/User");
 //Admin Only access
 exports.addUser = async (req, res) => {
-  //console.log(req.body)
+    console.log(req.body)
   const { type, email, pass, confirmpass, gender, employeeId, department, enrolledDate, designation, retiredStaus, name}=req.body
     if(pass!==confirmpass){
         req.flash('error', 'Passwords do not match')
-        res.redirect('back')
+        res.redirect('/user/auth/signup')
     }else{
         try{
             const newUser={
@@ -17,7 +17,8 @@ exports.addUser = async (req, res) => {
                 instituteId:res.locals.currentUser.institute,
                 department: department,
                 enrolledDate: enrolledDate,
-                employeeID: employeeId
+                employeeID: employeeId,
+                designation: designation
             }
             if(retiredStaus==='Yes'){
                 newUser.retiredStaus=true
@@ -36,7 +37,7 @@ exports.addUser = async (req, res) => {
             }else{
                 throw new Error('Invalid Type Selected')
             } 
-            req.flash("success", "Employee Added")
+            req.flash("success", "Email already exists")
             res.redirect('/admin')
         }catch(err){
             console.log(err)
@@ -60,4 +61,19 @@ exports.renderRegisterationPage=async (req, res)=>{
         console.log(err)
         res.redirect('/error')
     }
+}
+exports.leave = async(req, res)=>{
+    console.log(req.body)
+    const {enrollment,status} = req.body;
+    const foundUser=await User.find({employeeId: enrollment});
+    foundUser.appliedLeave.find({status : 'Waiting'}).status = status;
+    res.redirect('/admin/employee/leaves')
+}
+
+exports.viewleaves = async(req,res)=>{
+    const users = User.find({})
+    for(user in users){
+        console.log(user.appliedLeave)   
+    }
+    res.render('./admin/viewleaves')
 }

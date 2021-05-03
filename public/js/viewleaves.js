@@ -23,10 +23,7 @@ function table(x) {
 
   details = document.getElementById("reason");
   details.value = values[4];
-
-  details = document.getElementById("status");
-  details.value = values[5];
-
+  
   console.log(values);
   var element = document.getElementById("leaveTable");
   element.classList.add("d-none");
@@ -36,10 +33,10 @@ function table(x) {
 
 function goback(x)
 {
-	var element = document.getElementById("leaveTable");
-  	element.classList.remove("d-none");
-  	element = document.getElementById("info");
-  	element.classList.add("d-none");
+  var element = document.getElementById("leaveTable");
+    element.classList.remove("d-none");
+    element = document.getElementById("info");
+    element.classList.add("d-none");
 }
 
 
