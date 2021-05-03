@@ -40,6 +40,7 @@ const employeeSchema= new mongoose.Schema(
                     type: String,
                 },
                 approvedStatus: {
+                    type: String,
                     enum: ['Approved', 'Rejected', 'Waiting']
                 }
             }
