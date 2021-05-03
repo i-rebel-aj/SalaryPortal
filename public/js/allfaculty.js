@@ -5,7 +5,7 @@ function row(x) {
   // console.log(x.rows[Index]);
 }
 
-function table(x) {
+function table1(x) {
   // alert(x.rows);
   var values = (x.rows[Index].innerText).split("\t");
   
@@ -32,10 +32,10 @@ function table(x) {
   element.classList.remove("d-none");
 }
 
-function goback(x)
+function goback1(x)
 {
-	var element = document.getElementById("infotable");
-  	element.classList.remove("d-none");
-  	element = document.getElementById("info");
-  	element.classList.add("d-none");
+  var element = document.getElementById("infotable");
+    element.classList.remove("d-none");
+    element = document.getElementById("info");
+    element.classList.add("d-none");
 }

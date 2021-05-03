@@ -24,7 +24,26 @@ const employeeSchema= new mongoose.Schema(
         retiredStatus:{
             type: Boolean,
             default: false
-        }
+        },
+        appliedLeave:[
+            {
+                leaveFilePath: {
+                    type: String,
+                },
+                startDate :{
+                    type: Date,   
+                },
+                endDate : {
+                    type: Date,
+                },
+                leaveReason : {
+                    type: String,
+                },
+                approvedStatus: {
+                    enum: ['Approved', 'Rejected', 'Waiting']
+                }
+            }
+        ]
     }
 )
 module.exports=employeeSchema
