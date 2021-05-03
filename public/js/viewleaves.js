@@ -5,24 +5,27 @@ function row(x) {
   // console.log(x.rows[Index]);
 }
 
-function table(x) {
-  // alert(x.rows);
+function table(x,id) {
   var values = (x.rows[Index].innerText).split("\t");
   
-  var details = document.getElementById("enrollment");
+  var details = document.getElementById("leaveID");
   details.value = values[0];
+  document.getElementById("leave").classList.add("d-none")
+
+  var details = document.getElementById("enrollment");
+  details.value = values[1];
   
   details = document.getElementById("name");
-  details.value = values[1];
-
-  var details = document.getElementById("department");
   details.value = values[2];
 
-  details = document.getElementById("leavesRemaining");
+  var details = document.getElementById("department");
   details.value = values[3];
 
-  details = document.getElementById("reason");
+  details = document.getElementById("leavesRemaining");
   details.value = values[4];
+
+  details = document.getElementById("reason");
+  details.value = values[5];
   
   console.log(values);
   var element = document.getElementById("leaveTable");

@@ -32,7 +32,7 @@
                   </div>
                   <div class="form-group">
                     <label class="control-label" for="select" required>Department</label>
-                    <select class="form-control" name="department">
+                    <select class="form-control form-control-lg" name="department">
                       <% if(departments){%>
                         <% departments.forEach((department)=>{%>
                           <option value="<%=department._id%>"><%= department.departmentName %> </option>
@@ -45,7 +45,7 @@
                 
                   <div class="form-group">
                     <label class="control-label" for="select" required>Type</label>
-                    <select class="form-control" name="type">
+                    <select class="form-control form-control-lg" name="type">
                       <option value="" selected disabled>Choose One</option>
                           <option value="Faculty">Faculty</option>
                           <option value="Staff">Staff</option>
@@ -73,7 +73,7 @@
                   <!-- <div class="form-group">
                     <label class="control-label" for="select" required>Designation</label>
                     <div class="col-lg-10">
-                      <select class="form-control" name="institute">
+                      <select class="form-control form-control-lg" name="institute">
                         <option value="" selected disabled>Choose One</option>
                             <option>Designation 1</option>
                             <option>Designation 2</option>
@@ -82,8 +82,8 @@
                     </div>
                   </div> -->
                   <div class="form-group">
-                    <label class="control-label" for="select" required>Designation</label>
-                    <select class="form-control" name="gender">
+                    <label class="control-label" for="select" required>Gender</label>
+                    <select class="form-control form-control-lg" name="gender">
                       <option value="male" selected>Male</option>
                           <option value="female">Female</option>
                     </select>

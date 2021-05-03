@@ -1,9 +1,10 @@
 const { Faculty, Staff, Management } = require("../models/User")
 const {User,Admin} = require("../models/User");
+const {Department} = require("../models/Department");
 //Admin Only access
 exports.addUser = async (req, res) => {
     console.log(req.body)
-  const { type, email, pass, confirmpass, gender, employeeId, department, enrolledDate, designation, retiredStaus, name}=req.body
+  const { Type, email, pass, confirmpass, gender, employeeId, department, enrolledDate, designation, retiredStaus, name}=req.body
     if(pass!==confirmpass){
         req.flash('error', 'Passwords do not match')
         res.redirect('/user/auth/signup')
@@ -14,7 +15,7 @@ exports.addUser = async (req, res) => {
                 password: pass, 
                 name: name,
                 gender: gender,
-                instituteId:res.locals.currentUser.institute,
+                institute: req.session.user.institute,
                 department: department,
                 enrolledDate: enrolledDate,
                 employeeID: employeeId,
@@ -25,13 +26,13 @@ exports.addUser = async (req, res) => {
             }else if(retiredStaus==='No'){
                 newUser.retiredStaus=false
             }
-            if(type==='Faculty'){
+            if(Type==='Faculty'){
                 const faculty=new Faculty(newUser)
                 await faculty.save()
-            }else if(type==='Staff'){
+            }else if(Type==='Staff'){
                 const staff=new Staff(newUser)
                 await staff.save()
-            }else if(type==='Management'){
+            }else if(Type==='Management'){
                 const management=new Management(newUser)
                 await management.save()
             }else{
@@ -64,16 +65,37 @@ exports.renderRegisterationPage=async (req, res)=>{
 }
 exports.leave = async(req, res)=>{
     console.log(req.body)
-    const {enrollment,status} = req.body;
-    const foundUser=await User.find({employeeId: enrollment});
-    foundUser.appliedLeave.find({status : 'Waiting'}).status = status;
+    const {enrollment,status,leaveId} = req.body;
+    let foundUser = await User.findOne({employeeID: enrollment});
+    // console.log(foundUser.appliedLeave)
+    const leave = foundUser.appliedLeave
+
+    const l = leave.length
+    for(let i=0;i<l;i++){
+        if(foundUser.appliedLeave[i]._id.toString() === leaveId.toString()){
+            foundUser.appliedLeave[i].approvedStatus = status
+        }
+    }
+    // console.log(foundUser.appliedLeave)
+    await foundUser.save()
     res.redirect('/admin/employee/leaves')
 }
 
 exports.viewleaves = async(req,res)=>{
-    const users = User.find({})
-    for(user in users){
-        console.log(user.appliedLeave)   
+    // console.log(req.session.user.institute)
+    const users = await User.find({ institute: req.session.user.institute,Type: 'Faculty'}).populate('department','departmentName')
+    let waitingLeaves = [];
+    for(const user of users){
+        const leaves = user.appliedLeave
+        let userLeave = {
+            employeeId: user.employeeID,
+            name: user.name,
+            department: user.department.departmentName,
+            leavesReamaining: 12,
+            leaves: leaves
+        }
+        waitingLeaves.push(userLeave)
     }
-    res.render('./admin/viewleaves')
+    console.log(waitingLeaves)
+    res.render('./admin/viewleaves',{allleaves: waitingLeaves})
 }
