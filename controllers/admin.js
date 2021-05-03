@@ -12,7 +12,6 @@ exports.addUser = async (req, res) => {
         throw new Error('Admin requested to add Employee Info\'s First')
     }
     const foundDesignation=getDesignationInfoById(foundInstitute.employeeInfo, designationId)
-    console.log(foundDesignation)
     if(pass!==confirmpass){
         req.flash('error', 'Passwords do not match')
         res.redirect('/user/auth/signup')
@@ -34,12 +33,15 @@ exports.addUser = async (req, res) => {
                 newUser.retiredStaus=false
             }
             if(foundDesignation.employeeType==='Faculty'){
+                console.log('Faculty Created')
                 const faculty=new Faculty(newUser)
                 await faculty.save()
             }else if(foundDesignation.employeeType==='Staff'){
+                console.log('Staff Created')
                 const staff=new Staff(newUser)
                 await staff.save()
             }else if(foundDesignation.employeeType==='Management'){
+                console.log('Management Created')
                 const management=new Management(newUser)
                 await management.save()
             }else{
@@ -48,13 +50,6 @@ exports.addUser = async (req, res) => {
             req.flash("success", "Employee Added")
             res.redirect('/admin')
         }catch(err){
-            // console.log(err)
-            // if (err.code === 11000) {
-            //     if (err.keyValue.email) {
-            //         req.flash("error", "Email already exists")
-            //         res.redirect('back')
-            //     }
-            // }
             req.flash('error', `Something went wrong ${err.message}`)
             res.redirect('back')
         } 

@@ -1,4 +1,4 @@
-const mongoose=require("mongoose")
+const mongoose=require("mongoose").set("debug",true)
 const adminSchema=require("./Schemas/Admin")
 const employeeSchema=require('./Schemas/Employee')
 const options={discriminatorKey: 'Type'}
