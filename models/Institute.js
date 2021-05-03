@@ -14,10 +14,16 @@ const InstituteSchema=new mongoose.Schema(
                     enum: ['Faculty', 'Staff', 'Management']
                 },
                 designationName: {
-                    type: String
+                   type: String,
+                   required: true
+                },
+                department:{
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: 'SalaryPortal_Department'
                 },
                 stipendCurrency: {
-                    type: String
+                    type: String,
+                    default: 'INR'
                     //Add Enums
                 },
                 annualbasePay: {

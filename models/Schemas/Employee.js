@@ -6,7 +6,8 @@ const employeeSchema= new mongoose.Schema(
             required: true
         },
         department:{
-            type: String,
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'SalaryPortal_Department',
             required: true
         },
         enrolledDate:{

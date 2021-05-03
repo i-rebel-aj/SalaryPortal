@@ -1,0 +1,23 @@
+<%- include('../Partials/MetaTag/adminMeta.ejs') %>
+<title>Admin | Add Department</title>
+<%- include('../Partials/Navbar/adminNav.ejs') %>
+<%- include('../Partials/flash_messages') %>
+<%- include('../Partials/SideBar/adminside.ejs') %>
+<div class="container">
+    <form action="/admin/department" method="POST">
+            <div class="form-group">
+            <label for="exampleInputPassword1">Department Name</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" name="departmentName">
+            </div>
+            <div class="form-group">
+            <label for="exampleInputPassword1">Employee Type</label>
+            <select name="containsEmployee" multiple="multiple" required>
+                <option value="Staff">Staff</option>
+                <option value="Faculty">Faculty</option>
+                <option value="Management">Management</option>
+            </select>
+            </div>
+        <button type="submit" class="btn btn-primary btn-md">Submit</button>
+    </form>
+</div>
+<%- include('../Partials/Scripts/adminscript.ejs') %>

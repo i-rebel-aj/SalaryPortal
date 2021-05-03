@@ -13,12 +13,16 @@ exports.userLogin = async (req, res) => {
         req.flash("success", "You are now signed in");
         req.session.isLoggedIn = true;
         req.session.user = user;
-        res.redirect("/");
-        //return res.status(200).json({message: 'Logged in Success'})
-      
+        console.log(user)
+        if(user.Type==='Admin'){
+            return res.redirect("/admin")
+        }else if(user.Type==='Faculty'){
+            return res.redirect('/faculty')
+        }else{
+            res.redirect('/error')
+        }
     }
   } catch (err) {
-    //console.log(err)
     res.redirect('/error');
   }
 };
