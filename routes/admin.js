@@ -4,7 +4,7 @@ const {addUser, renderRegisterationPage,viewleaves,leave}=require('../controller
 const {viewAllDepartment, viewDepartmentForm, addDepartment}=require('../controllers/department')
 const {isAdmin,isFaculty}=require('../middlewares/authorization')
 const {isLoggedIn}=require('../middlewares/authentication')
-const {viewInstituteEmployeeInfo}=require('../controllers/employee')
+const {viewInstituteEmployeeInfo, viewAllInstituteEmployees}=require('../controllers/employee')
 const {addEmployeeSalaryInfo, renderAddSalaryInfoForm, addAllowancesToEmployee, renderEmployeeSalaryInfo}=require('../controllers/Institute')
 /*===============================
     All POST routes goes here
@@ -56,7 +56,12 @@ router.get('/',[isLoggedIn, isAdmin], (req, res)=>{
     @Access Private
 */
 router.get('/addemployee',[isLoggedIn, isAdmin], renderRegisterationPage)
-
+/*
+    @Route  GET  /admin/employee
+    @Desc   For admin to view all employees
+    @Access Private
+*/
+router.get('/employee',[isLoggedIn, isAdmin], viewAllInstituteEmployees)
 /*
     @Route  GET  /admin/employee/leaves
     @Desc   To Admin to add employee

@@ -1,4 +1,4 @@
-const { Faculty, Staff, Management } = require("../models/User")
+const { Faculty, Staff, Management} = require("../models/User")
 const { Department } = require('../models/Department');
 const {User,Admin} = require("../models/User");
 const Institute = require("../models/Institute");
@@ -33,15 +33,12 @@ exports.addUser = async (req, res) => {
                 newUser.retiredStaus=false
             }
             if(foundDesignation.employeeType==='Faculty'){
-                console.log('Faculty Created')
                 const faculty=new Faculty(newUser)
                 await faculty.save()
             }else if(foundDesignation.employeeType==='Staff'){
-                console.log('Staff Created')
                 const staff=new Staff(newUser)
                 await staff.save()
             }else if(foundDesignation.employeeType==='Management'){
-                console.log('Management Created')
                 const management=new Management(newUser)
                 await management.save()
             }else{
@@ -50,6 +47,7 @@ exports.addUser = async (req, res) => {
             req.flash("success", "Employee Added")
             res.redirect('/admin')
         }catch(err){
+            console.log(err)
             req.flash('error', `Something went wrong ${err.message}`)
             res.redirect('back')
         } 
