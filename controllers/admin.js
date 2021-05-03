@@ -1,10 +1,18 @@
 const { Faculty, Staff, Management } = require("../models/User")
 const { Department } = require('../models/Department');
 const {User,Admin} = require("../models/User");
+const Institute = require("../models/Institute");
+const {getDesignationInfoById}=require('../lib/employeeValidator')
 //Admin Only access
 exports.addUser = async (req, res) => {
     console.log(req.body)
-  const { Type, email, pass, confirmpass, gender, employeeId, department, enrolledDate, designation, retiredStaus, name}=req.body
+    const {email, pass, confirmpass, gender, employeeId, enrolledDate, designationId, retiredStaus, name}=req.body
+    const foundInstitute= await Institute.findById(req.session.user.institute)
+    if(!foundInstitute.employeeInfo){
+        throw new Error('Admin requested to add Employee Info\'s First')
+    }
+    const foundDesignation=getDesignationInfoById(foundInstitute.employeeInfo, designationId)
+    console.log(foundDesignation)
     if(pass!==confirmpass){
         req.flash('error', 'Passwords do not match')
         res.redirect('/user/auth/signup')
@@ -16,23 +24,22 @@ exports.addUser = async (req, res) => {
                 name: name,
                 gender: gender,
                 institute: req.session.user.institute,
-                department: department,
                 enrolledDate: enrolledDate,
                 employeeID: employeeId,
-                designation: designation
+                designationId: designationId
             }
             if(retiredStaus==='Yes'){
                 newUser.retiredStaus=true
             }else if(retiredStaus==='No'){
                 newUser.retiredStaus=false
             }
-            if(Type==='Faculty'){
+            if(foundDesignation.employeeType==='Faculty'){
                 const faculty=new Faculty(newUser)
                 await faculty.save()
-            }else if(Type==='Staff'){
+            }else if(foundDesignation.employeeType==='Staff'){
                 const staff=new Staff(newUser)
                 await staff.save()
-            }else if(Type==='Management'){
+            }else if(foundDesignation.employeeType==='Management'){
                 const management=new Management(newUser)
                 await management.save()
             }else{
@@ -41,13 +48,13 @@ exports.addUser = async (req, res) => {
             req.flash("success", "Employee Added")
             res.redirect('/admin')
         }catch(err){
-            console.log(err)
-            if (err.code === 11000) {
-                if (err.keyValue.email) {
-                    req.flash("error", "Email already exists")
-                    res.redirect('back')
-                }
-            }
+            // console.log(err)
+            // if (err.code === 11000) {
+            //     if (err.keyValue.email) {
+            //         req.flash("error", "Email already exists")
+            //         res.redirect('back')
+            //     }
+            // }
             req.flash('error', `Something went wrong ${err.message}`)
             res.redirect('back')
         } 
@@ -56,8 +63,8 @@ exports.addUser = async (req, res) => {
 exports.renderRegisterationPage=async (req, res)=>{
     try{
         console.log(`Institute Id id ${req.session.user.institute}`)
-        const foundDepartment=await Department.find({associatedInstituteId: req.session.user.institute})
-        res.render('./admin/registerEmployee', {departments: foundDepartment})
+        const foundInstitute= await Institute.findById(req.session.user.institute)
+        res.render('./admin/registerEmployee', {designations: foundInstitute.employeeInfo})
     }catch(err){
         console.log(err)
         res.redirect('/error')

@@ -15,7 +15,7 @@ exports.viewAllInstituteEmployees= async (req, res)=>{
     try{
         const foundUsers= await User.find({ $or:[{institute: req.session.user.institute, Type: 'Staff'}, {institute: req.session.user.institute, Type: 'Faculty'}, {institute: req.session.user.institute, Type: 'Management'}]}).populate('department', 'departmentName')
         console.log(foundUsers)
-
+        res.send('I\'ll Do')
     }catch(err){
         req.flash('error', `Something Went wrong ${err.message}`)
         res.redirect('/admin')

@@ -10,6 +10,7 @@
     <h4>Annual Base pay: <%= employee.stipendCurrency %> </h4>
     <h4>Annual Base Pay: <%= employee.annualbasePay %>  </h4>
     <h4>Paid Leaves Permitted: <%=employee.paidLeavesPermitted %></h4>
+    <h4>Tax Rate: <%= employee.taxRateOnBase%> </h4>
     <h4>Allowance Info</h4>
     <table class="table table-striped">
         <thead class="thead-dark">
@@ -22,7 +23,6 @@
         <tbody>
             <% let totalAllowance=0 %> 
          <% employee.annualAllowances.forEach(allowance => { %>
-            <%console.log(allowance)  %> 
              <tr>
                 <td><%= allowance.allowanceName %> </td>
                 <td><%= allowance.allowanceAmount %> <% totalAllowance+=allowance.allowanceAmount %>  </td>

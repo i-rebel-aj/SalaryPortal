@@ -5,26 +5,87 @@ const employeeSchema= new mongoose.Schema(
             type: String,
             required: true
         },
-        department:{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'SalaryPortal_Department',
-            required: true
-        },
         enrolledDate:{
             type: Date,
             required: true
         },
-        designation:[
-            {
-                designationName: {
-                    type: String
-                }
-            }
-        ],
+        designationId:{
+            type: mongoose.Schema.Types.ObjectId,
+            required: true
+        },
         retiredStatus:{
             type: Boolean,
             default: false
         },
+        //Improvise The DB Design on this one
+        leaveInfo:[
+            {
+                year:{
+                    type: String
+                },
+                leavesLeft:{
+                    type: Number
+                }
+            }
+        ],
+        salaryInfo:[
+            {
+                to:{
+                    type: Date
+                },
+                from:{
+                    type:Date
+                },
+                basePay:{
+                    type: Number
+                },
+                receivedAllowances:[
+                    {
+                        claimReceipt:[
+                            {
+                                url: {
+                                    type: String
+                                }
+                            },
+                        ],
+                        institutePaymentRecepit:[
+                            {
+                                url: {
+                                    type: String
+                                }
+                            },
+                        ],
+                        totalReceivedAmount:{
+                            type: Number
+                        },
+                        allowanceId:{
+                            type: mongoose.Schema.Types.ObjectId
+                        },
+                        remarks:{
+                            type: String
+                        }
+                    }
+                ],
+                paymentReceipts:[
+                    {
+                        url:{
+                            type: String
+                        }
+                    }
+                ],
+                leaveDeductions:{
+                    type: Number,
+                    default: 0
+                },
+                taxDeduction:{
+                    type: Number
+                },
+                //totalAmountSettled=base+ allowances- leaveDeducations - taxDeductions
+                totalAmountSettled:{
+                    type: Number
+                }
+            }
+        ],
         appliedLeave:[
             {
                 leaveFilePath: {
