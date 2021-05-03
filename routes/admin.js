@@ -5,7 +5,7 @@ const {viewAllDepartment, viewDepartmentForm, addDepartment}=require('../control
 const {isAdmin,isFaculty}=require('../middlewares/authorization')
 const {isLoggedIn}=require('../middlewares/authentication')
 const {viewInstituteEmployeeInfo}=require('../controllers/employee')
-const {addEmployeeSalaryInfo, renderAddSalaryInfoForm, addAllowancesToEmployee}=require('../controllers/Institute')
+const {addEmployeeSalaryInfo, renderAddSalaryInfoForm, addAllowancesToEmployee, renderEmployeeSalaryInfo}=require('../controllers/Institute')
 /*===============================
     All POST routes goes here
 =================================*/
@@ -98,5 +98,11 @@ router.get('/addemployeeinfo/:id/allowance', [isLoggedIn, isAdmin], (req, res)=>
     @Desc   To View employeeinfos tabulated
     @Access Private
 */
-router.get('/employee/info', [isLoggedIn, isAdmin], viewInstituteEmployeeInfo)
+router.get('/employeeinfo', [isLoggedIn, isAdmin], viewInstituteEmployeeInfo)
+/*
+    @Route  GET  /admin/employeeinfo
+    @Desc   To View employee salary info by employee
+    @Access Private
+*/
+router.get('/employeeinfo/:id', [isLoggedIn, isAdmin], renderEmployeeSalaryInfo)
 module.exports=router

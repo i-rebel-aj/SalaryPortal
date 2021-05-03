@@ -14,11 +14,11 @@
             <th scope="col">Paid Leaves Permitted</th>
             <th scope="col">Add Allowances</th>
             <th scope="col">Add Pension Details</th>
+            <th scope="col">View Complete Details</th>
           </tr>
         </thead>
         <tbody>
          <% employees.forEach(employee => { %>
-            <%console.log(employee)  %> 
              <tr>
                 <td><%= employee.employeeType %> </td>
                 <td><%= employee.designationName %> </td>
@@ -27,6 +27,7 @@
                 <td><%= employee.paidLeavesPermitted%></td>
                 <td><a href="/admin/addemployeeinfo/<%=employee._id%>/allowance" class="btn btn-success btn-md">Add Allowances Info</a></td>
                 <td><a href="" class="btn btn-info btn-md">Add Pension Info</a></td>
+                <td><a href="/admin/employeeinfo/<%=employee._id%>" class="btn btn-link btn-md">View Complete Info</a></td>
              </tr>
          <% }); %> 
         </tbody>

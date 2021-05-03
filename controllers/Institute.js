@@ -129,3 +129,20 @@ exports.addAllowancesToEmployee= async (req, res)=>{
         res.redirect('/admin')
     }
 }
+exports.renderEmployeeSalaryInfo=async (req, res)=>{
+    try{
+        const foundInstitute= await Institute.findById(req.session.user.institute).populate('employeeInfo.department', 'departmentName')
+        const employeeInfoObjectid=req.params.id
+        let foundEmployeeSalaryInfo={}
+        for (const employeeInfo of foundInstitute.employeeInfo) {
+            if(employeeInfo._id.toString()===employeeInfoObjectid.toString()){
+                foundEmployeeSalaryInfo=employeeInfo
+            }
+        }
+        console.log(foundEmployeeSalaryInfo)
+        res.render('./admin/employeeSalaryInfo', {employee: foundEmployeeSalaryInfo})
+    }catch(err){
+        req.flash('error', `Something Went wrong ${err.message}`)
+        res.redirect('/admin')
+    }
+}
