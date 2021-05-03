@@ -29,7 +29,8 @@ const userSchema=new mongoose.Schema(
         //Registeration of college here from other DB
         institute:{
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'SalaryPortal_Institute'
+            ref: 'SalaryPortal_Institute',
+            required: true
         },
         
     },options,{timestamps: true}

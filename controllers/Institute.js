@@ -1,3 +1,4 @@
+const { Department } = require('../models/Department');
 const Institute = require('../models/Institute')
 const {User,Admin} = require("../models/User");
 /*=========================
@@ -70,3 +71,28 @@ exports.addInstituteAdmin = async (req, res) => {
           } 
       }
   }
+
+//For Admin
+exports.addEmployeeSalaryInfo= async (req, res)=>{
+    const {employeeType, designationName, department, stipedCurrency, annualbasePay, paidLeavesPermitted}=req.body
+    try{
+        const instituteId= req.session.user.institute
+        const foundInstitute= await Institute.findById(instituteId)
+        const foundDepartment= await Department.findOne({departmentName: department})
+        const employeeInfo={
+            employeeType: employeeType,
+            designationName: designationName,
+            department: foundDepartment._id,
+            stipedCurrency: stipedCurrency,
+            annualbasePay: annualbasePay,
+            paidLeavesPermitted: paidLeavesPermitted
+        }
+        foundInstitute.employeeInfo.push(employeeInfo)
+        await foundInstitute.save()
+        req.flash('success', 'Info added Success')
+        res.redirect('/admin')
+    }catch(err){
+        req.flash('error', `Something Went wrong ${err.message}`)
+        res.redirect('/admin')
+    }
+}

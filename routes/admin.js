@@ -1,9 +1,11 @@
 const express=require("express")
 const router=express.Router();
-const {addUser,leave,viewleaves}=require('../controllers/admin')
+const {addUser, renderRegisterationPage,viewleaves,leave}=require('../controllers/admin')
 const {viewAllDepartment, viewDepartmentForm, addDepartment}=require('../controllers/department')
 const {isAdmin,isFaculty}=require('../middlewares/authorization')
 const {isLoggedIn}=require('../middlewares/authentication')
+const {viewInstituteEmployeeInfo}=require('../controllers/employee')
+const {addEmployeeSalaryInfo}=require('../controllers/Institute')
 /*===============================
     All POST routes goes here
 =================================*/
@@ -20,11 +22,17 @@ router.post('/adduser',[isLoggedIn, isAdmin], addUser)
 */
 router.post('/department', [isLoggedIn, isAdmin], addDepartment)
 /*
-    @Route  POST  /admin/employee/leave
-    @Desc   For admin to accept/reject Leave
+    @Route  POST  /admin/employeeinfo
+    @Desc   For admin to add a employee salary info
     @Access Private
 */
-router.post('/employee/leave', leave)
+router.post('/employeeinfo', [isLoggedIn, isAdmin], addEmployeeSalaryInfo)
+/*
+    @Route  POST  /admin/employee/leaves
+    @Desc   For admin to accept / reject employee leaves
+    @Access Private
+*/
+router.post('/employee/leave',[isLoggedIn, isAdmin], leave)
 /*===============================
     All GET routes goes here
 =================================*/
@@ -41,16 +49,14 @@ router.get('/',[isLoggedIn, isAdmin], (req, res)=>{
     @Desc   To Admin to add employee
     @Access Private
 */
-router.get('/addemployee',[isLoggedIn, isAdmin], (req, res)=>{
-    res.render('./admin/registerFaculty')
-})
+router.get('/addemployee',[isLoggedIn, isAdmin], renderRegisterationPage)
+
 /*
     @Route  GET  /admin/employee/leaves
-    @Desc   To View all employee leaves
+    @Desc   To Admin to add employee
     @Access Private
 */
-router.get('/employee/leaves',[isLoggedIn, isAdmin], viewleaves) 
-
+router.get('/employee/leaves',[isLoggedIn, isAdmin], viewleaves)
 /*
     @Route  GET  /admin/adddepartment
     @Desc   To View add department form
@@ -59,8 +65,22 @@ router.get('/employee/leaves',[isLoggedIn, isAdmin], viewleaves)
 router.get('/adddepartment', [isLoggedIn, isAdmin], viewDepartmentForm)
 /*
     @Route  GET  /admin/department
-    @Desc   To View add department form
+    @Desc   To View department
     @Access Private
 */
 router.get('/department', [isLoggedIn, isAdmin], viewAllDepartment)
+/*
+    @Route  GET  /admin/addemployeeinfo
+    @Desc   To View add addemployeeinfo form
+    @Access Private
+*/
+router.get('/addemployeeinfo', [isLoggedIn, isAdmin], (req, res)=>{
+    res.render('./admin/addEmployeeSalaryInfo')
+})
+/*
+    @Route  GET  /admin/employeeinfo
+    @Desc   To View employeeinfos tabulated
+    @Access Private
+*/
+router.get('/employee/info', [isLoggedIn, isAdmin], viewInstituteEmployeeInfo)
 module.exports=router

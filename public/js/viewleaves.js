@@ -33,10 +33,10 @@ function table(x) {
 
 function goback(x)
 {
-	var element = document.getElementById("leaveTable");
-  	element.classList.remove("d-none");
-  	element = document.getElementById("info");
-  	element.classList.add("d-none");
+  var element = document.getElementById("leaveTable");
+    element.classList.remove("d-none");
+    element = document.getElementById("info");
+    element.classList.add("d-none");
 }
 
 

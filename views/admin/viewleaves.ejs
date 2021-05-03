@@ -1,4 +1,3 @@
-
 <%- include('../Partials/MetaTag/adminMeta.ejs') %>
 <title>Leaves</title>
 <%- include('../Partials/Navbar/adminNav.ejs') %>
@@ -99,30 +98,17 @@
                 </thead>
                 
                 <tbody>
-                  <tr onclick="row(this)">
-                    <td>12345678</td>
-                    <td>Rakesh Matam</td>
-                    <td>CSE</td>
-                    <td>12</td>
-                    <td>Medical Emergency</td>
-                    <td>Pending</td>
-                  </tr>
-                  <tr onclick="row(this)">
-                    <td>123456789</td>
-                    <td>Rakesh Matam</td>
-                    <td>CSE</td>
-                    <td>12</td>
-                    <td>Medical Emergency</td>
-                    <td>Pending</td>
-                  </tr>
-                  <tr onclick="row(this)">
-                    <td>1234567890</td>
-                    <td>Rakesh Matam</td>
-                    <td>CSE</td>
-                    <td>12</td>
-                    <td>Medical Emergency</td>
-                    <td>Pending</td>
-                  </tr>
+                  <% for(var i=0; i<leaves.length; i++) {%>
+                    <tr onclick="row(this)">
+                      <th><%= leaves[i].employeeId %></th>
+                      <th><%= leaves[i].name %></th>
+                      <th><%= leaves[i].department %></th>
+                      <th><%= leaves[i].leavesReamaining %></th>
+                      <th><%= leaves[i].subject %></th>
+                      <th>Pending</th>
+                    </tr>
+                  <% } %>
+                  
                 </tbody>
                 
               </table>

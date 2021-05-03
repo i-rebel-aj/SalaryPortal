@@ -34,8 +34,8 @@ function table1(x) {
 
 function goback1(x)
 {
-	var element = document.getElementById("infotable");
-  	element.classList.remove("d-none");
-  	element = document.getElementById("info");
-  	element.classList.add("d-none");
+  var element = document.getElementById("infotable");
+    element.classList.remove("d-none");
+    element = document.getElementById("info");
+    element.classList.add("d-none");
 }
