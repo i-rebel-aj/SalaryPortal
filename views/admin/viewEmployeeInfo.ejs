@@ -9,15 +9,24 @@
           <tr>
             <th scope="col">Employee Type</th>
             <th scope="col">Designation Name</th>
+            <th scope="col">Department</th>
             <th scope="col">Annual Base Pay</th>
+            <th scope="col">Paid Leaves Permitted</th>
+            <th scope="col">Add Allowances</th>
+            <th scope="col">Add Pension Details</th>
           </tr>
         </thead>
         <tbody>
          <% employees.forEach(employee => { %>
             <%console.log(employee)  %> 
              <tr>
-                 <td><%= employee.departmentName %> </td>
-                 <td><%= employee.designationName%></td>
+                <td><%= employee.employeeType %> </td>
+                <td><%= employee.designationName %> </td>
+                <td><%= employee.department.departmentName %> </td>
+                <td><%= employee.annualbasePay%> <%= employee.stipendCurrency %> </td>
+                <td><%= employee.paidLeavesPermitted%></td>
+                <td><a href="" class="btn btn-success btn-md">Add Allowances Info</a></td>
+                <td><a href="" class="btn btn-info btn-md">Add Pension Info</a></td>
              </tr>
          <% }); %> 
         </tbody>

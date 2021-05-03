@@ -78,11 +78,10 @@ exports.addEmployeeSalaryInfo= async (req, res)=>{
     try{
         const instituteId= req.session.user.institute
         const foundInstitute= await Institute.findById(instituteId)
-        const foundDepartment= await Department.findOne({departmentName: department})
         const employeeInfo={
             employeeType: employeeType,
             designationName: designationName,
-            department: foundDepartment._id,
+            department: department,
             stipedCurrency: stipedCurrency,
             annualbasePay: annualbasePay,
             paidLeavesPermitted: paidLeavesPermitted
@@ -91,6 +90,15 @@ exports.addEmployeeSalaryInfo= async (req, res)=>{
         await foundInstitute.save()
         req.flash('success', 'Info added Success')
         res.redirect('/admin')
+    }catch(err){
+        req.flash('error', `Something Went wrong ${err.message}`)
+        res.redirect('/admin')
+    }
+}
+exports.renderAddSalaryInfoForm= async (req, res)=>{
+    try{
+        const foundDepartment=await Department.find({associatedInstituteId: req.session.user.institute})
+        res.render('./admin/addEmployeeSalaryInfo', {departments: foundDepartment})
     }catch(err){
         req.flash('error', `Something Went wrong ${err.message}`)
         res.redirect('/admin')

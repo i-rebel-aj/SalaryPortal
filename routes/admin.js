@@ -5,7 +5,7 @@ const {viewAllDepartment, viewDepartmentForm, addDepartment}=require('../control
 const {isAdmin,isFaculty}=require('../middlewares/authorization')
 const {isLoggedIn}=require('../middlewares/authentication')
 const {viewInstituteEmployeeInfo}=require('../controllers/employee')
-const {addEmployeeSalaryInfo}=require('../controllers/Institute')
+const {addEmployeeSalaryInfo, renderAddSalaryInfoForm}=require('../controllers/Institute')
 /*===============================
     All POST routes goes here
 =================================*/
@@ -27,6 +27,14 @@ router.post('/department', [isLoggedIn, isAdmin], addDepartment)
     @Access Private
 */
 router.post('/employeeinfo', [isLoggedIn, isAdmin], addEmployeeSalaryInfo)
+/*
+    @Route  POST  /admin/employeeinfo
+    @Desc   For admin to add employee allowances
+    @Access Private
+*/
+router.post('/employeeinfo/:id/allowance', [isLoggedIn, isAdmin], (req, res)=>{
+    res.send('Somethinng will Happer here')
+})
 /*===============================
     All GET routes goes here
 =================================*/
@@ -78,9 +86,7 @@ router.get('/department', [isLoggedIn, isAdmin], viewAllDepartment)
     @Desc   To View add addemployeeinfo form
     @Access Private
 */
-router.get('/addemployeeinfo', [isLoggedIn, isAdmin], (req, res)=>{
-    res.render('./admin/addEmployeeSalaryInfo')
-})
+router.get('/addemployeeinfo', [isLoggedIn, isAdmin], renderAddSalaryInfoForm)
 /*
     @Route  GET  /admin/employeeinfo
     @Desc   To View employeeinfos tabulated
