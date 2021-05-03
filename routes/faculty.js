@@ -23,7 +23,7 @@ router.post('/applyleave', [isLoggedIn, isFaculty], applyforleave)
 */
 
 router.get('/',[isLoggedIn, isFaculty], (req, res)=>{
-    res.render('./faculty/facultyHome')
+    res.render('./faculty/facultyhome')
 })
 
 /*

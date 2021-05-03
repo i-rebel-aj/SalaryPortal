@@ -44,12 +44,12 @@ const indexRoutes=require("./routes/index")
 const authRoutes=require('./routes/auth')
 const adminRoutes=require('./routes/admin')
 const superUserRoutes=require('./routes/superUser')
-const employeeRoutes=require('./routes/employee')
+const facultyRoutes=require('./routes/faculty')
 //Middlewares
 app.use("/", indexRoutes)
 app.use('/admin', adminRoutes)
 app.use('/user/auth', authRoutes)
-app.use('/employee', employeeRoutes)
+app.use('/faculty', facultyRoutes)
 app.use('/superuser', superUserRoutes)
 //If Errored page is fetched
 app.get('*', (req, res)=>{

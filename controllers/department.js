@@ -6,16 +6,16 @@ exports.addDepartment=async (req, res)=>{
         if(typeof(containsEmployee)==='string'){
             newDepartment.containsEmployee.push(containsEmployee)
         }else{
-            // for (const employeeType of containsEmployee) {
-            //     if(newDepartment?.containsEmployee){
-            //         //To Avoid repetions
-            //         if(newDepartment.containsEmployee.indexOf(employeeType)===-1){
-            //             newDepartment.containsEmployee.push(employeeType)
-            //         }
-            //     }else{
-            //         newDepartment.containsEmployee.push(employeeType)
-            //     }   
-            // }
+            for (const employeeType of containsEmployee) {
+                if(newDepartment?.containsEmployee){
+                    //To Avoid repetions
+                    if(newDepartment.containsEmployee.indexOf(employeeType)===-1){
+                        newDepartment.containsEmployee.push(employeeType)
+                    }
+                }else{
+                    newDepartment.containsEmployee.push(employeeType)
+                }   
+            }
         }
         await newDepartment.save()
         req.flash('success', 'Department Added Success')
