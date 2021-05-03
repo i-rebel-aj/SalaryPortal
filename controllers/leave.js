@@ -1,8 +1,8 @@
 const {User,Admin} = require("../models/User");
 exports.applyforleave = async (req, res) => {
    try{
-        const foundUser=await User.find({employeeId: req.session.user.employeeID})
-        // console.log(req.body);
+        const foundUser=await User.findById(req.session.user._id)
+        console.log(foundUser)
         const {startDate, endDate, reason} = req.body
         
         const leave = {
@@ -11,9 +11,9 @@ exports.applyforleave = async (req, res) => {
             leaveReason : reason,
             approvedStatus : 'Waiting'
         }
-
+        console.log(leave);
         foundUser.appliedLeave.push(leave);
-        foundUser.save(done);
+        await foundUser.save();
         req.flash('success','Leave Application Successfully Submitted')
         res.redirect('/faculty/applyleave')
         
