@@ -1,5 +1,6 @@
 const { Faculty, Staff, Management } = require("../models/User")
 const {User,Admin} = require("../models/User");
+const {Department} = require("../models/Department");
 //Admin Only access
 exports.addUser = async (req, res) => {
     console.log(req.body)

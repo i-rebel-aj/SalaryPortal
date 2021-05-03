@@ -18,7 +18,7 @@ exports.applyforleave = async (req, res) => {
         res.redirect('/faculty/applyleave')
         
     }catch(err){
-        req.flash('success', 'Something Went Wrong ${err.message}')
+        req.flash('error', 'Something Went Wrong ${err.message}')
         res.redirect('/faculty/applyleave')
     }
 }
