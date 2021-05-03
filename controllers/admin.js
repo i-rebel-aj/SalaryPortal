@@ -64,44 +64,38 @@ exports.renderRegisterationPage=async (req, res)=>{
     }
 }
 exports.leave = async(req, res)=>{
-    // console.log(req.body)
-    const {enrollment,status} = req.body;
-    var foundUser = await User.find({employeeID: enrollment});
-    console.log(foundUser[0].appliedLeave)
-    const leave = foundUser[0].appliedLeave
+    console.log(req.body)
+    const {enrollment,status,leaveId} = req.body;
+    let foundUser = await User.findOne({employeeID: enrollment});
+    // console.log(foundUser.appliedLeave)
+    const leave = foundUser.appliedLeave
 
     const l = leave.length
-    for(var i=0;i<l;i++){
-        if(foundUser[0].appliedLeave[i].approvedStatus === 'Waiting'){
-            foundUser[0].appliedLeave[i].approvedStatus = status
+    for(let i=0;i<l;i++){
+        if(foundUser.appliedLeave[i]._id.toString() === leaveId.toString()){
+            foundUser.appliedLeave[i].approvedStatus = status
         }
     }
-    console.log(foundUser[0].appliedLeave)
+    // console.log(foundUser.appliedLeave)
     await foundUser.save()
     res.redirect('/admin/employee/leaves')
 }
 
 exports.viewleaves = async(req,res)=>{
     // console.log(req.session.user.institute)
-    const users = await User.find({ institute: req.session.user.institute,Type: 'Faculty'})
-    var waitingLeaves = [];
+    const users = await User.find({ institute: req.session.user.institute,Type: 'Faculty'}).populate('department','departmentName')
+    let waitingLeaves = [];
     for(const user of users){
         const leaves = user.appliedLeave
-        for(var i=0;i<leaves.length;i++){
-            if(leaves[i].approvedStatus === 'Waiting'){
-                var userLeave = {
-                    employeeId: user.employeeID,
-                    name: user.name,
-                    department: user.department,
-                    leavesReamaining: 12,
-                    subject: leaves[i].leaveReason
-                }
-                // console.log(user.department)
-                waitingLeaves.push(userLeave)
-            }
-            // console.log(leaves[i].approvedStatus)
+        let userLeave = {
+            employeeId: user.employeeID,
+            name: user.name,
+            department: user.department.departmentName,
+            leavesReamaining: 12,
+            leaves: leaves
         }
+        waitingLeaves.push(userLeave)
     }
-    // console.log(waitingLeaves)
-    res.render('./admin/viewleaves',{leaves: waitingLeaves})
+    console.log(waitingLeaves)
+    res.render('./admin/viewleaves',{allleaves: waitingLeaves})
 }
