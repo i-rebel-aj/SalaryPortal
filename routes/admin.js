@@ -5,7 +5,7 @@ const {viewAllDepartment, viewDepartmentForm, addDepartment}=require('../control
 const {isAdmin,isFaculty}=require('../middlewares/authorization')
 const {isLoggedIn}=require('../middlewares/authentication')
 const {viewInstituteEmployeeInfo}=require('../controllers/employee')
-const {addEmployeeSalaryInfo, renderAddSalaryInfoForm, addAllowancesToEmployee, renderEmployeeSalaryInfo}=require('../controllers/Institute')
+const {addEmployeeSalaryInfo, renderAddSalaryInfoForm, addAllowancesToEmployee, renderEmployeeSalaryInfo,addPensionToEmployee}=require('../controllers/Institute')
 /*===============================
     All POST routes goes here
 =================================*/
@@ -39,6 +39,12 @@ router.post('/employeeinfo/:id/allowance', [isLoggedIn, isAdmin],addAllowancesTo
     @Access Private
 */
 router.post('/employee/leave',[isLoggedIn, isAdmin], leave)
+/*
+    @Route  POST  /employeeinfo/:id/pension
+    @Desc   For admin to add employee Pension
+    @Access Private
+*/
+router.post('/employeeinfo/:id/pension', [isLoggedIn, isAdmin],addPensionToEmployee)
 /*===============================
     All GET routes goes here
 =================================*/
@@ -101,4 +107,12 @@ router.get('/employeeinfo', [isLoggedIn, isAdmin], viewInstituteEmployeeInfo)
     @Access Private
 */
 router.get('/employeeinfo/:id', [isLoggedIn, isAdmin], renderEmployeeSalaryInfo)
+/*
+    @Route  GET  /admin/employeeinfo/:id/pension
+    @Desc   For admin to add employee pension
+    @Access Private
+*/
+router.get('/addemployeeinfo/:id/pension', [isLoggedIn, isAdmin],(req,res)=>{
+    res.render('./admin/addPensionForm', {employeeInfoId: req.params.id})
+})
 module.exports=router

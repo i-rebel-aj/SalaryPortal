@@ -1,5 +1,5 @@
 <%- include('../Partials/MetaTag/adminMeta.ejs') %>
-<title>Super Admin</title>
+<title>Admin</title>
 <%- include('../Partials/Navbar/adminNav.ejs') %>
 <%- include('../Partials/flash_messages') %>
 <%- include('../Partials/SideBar/adminside.ejs') %>
@@ -26,7 +26,7 @@
                 <td><%= employee.annualbasePay%> <%= employee.stipendCurrency %> </td>
                 <td><%= employee.paidLeavesPermitted%></td>
                 <td><a href="/admin/addemployeeinfo/<%=employee._id%>/allowance" class="btn btn-success btn-md">Add Allowances Info</a></td>
-                <td><a href="" class="btn btn-info btn-md">Add Pension Info</a></td>
+                <td><a href="/admin/addemployeeinfo/<%=employee._id%>/pension" class="btn btn-info btn-md">Add Pension Info</a></td>
                 <td><a href="/admin/employeeinfo/<%=employee._id%>" class="btn btn-link btn-md">View Complete Info</a></td>
              </tr>
          <% }); %> 

@@ -1,0 +1,27 @@
+<%- include('../Partials/MetaTag/adminMeta.ejs') %>
+<title>Admin | Add Pension</title>
+<%- include('../Partials/Navbar/adminNav.ejs') %>
+<%- include('../Partials/flash_messages') %>
+<%- include('../Partials/SideBar/adminside.ejs') %>
+<div class="container">
+    <h2>Adding Pension for the Employee ... </h2>
+    <h3>Department</h3>
+    <h4>Employee Type</h4>
+    <form action="/admin/employeeinfo/<%=employeeInfoId%>/pension" method="POST">
+            <div class="form-group">
+                <label for="exampleInputPassword1">Minimum Service Age</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" name="minserviceage">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Minimum Age</label>
+                <input type="number" min="0" class="form-control" id="exampleInputPassword1" name="minage">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Pension Pay</label>
+                <input type="number" min="0" class="form-control" id="exampleInputPassword1" name="pensionpay">
+            </div>
+            </div>
+        <button type="submit" class="btn btn-primary btn-md">Submit</button>
+    </form>
+</div>
+<%- include('../Partials/Scripts/adminscript.ejs') %>
