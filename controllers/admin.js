@@ -1,4 +1,5 @@
 const { Faculty, Staff, Management } = require("../models/User")
+const { Department } = require('../models/Department');
 const {User,Admin} = require("../models/User");
 //Admin Only access
 exports.addUser = async (req, res) => {
@@ -14,7 +15,7 @@ exports.addUser = async (req, res) => {
                 password: pass, 
                 name: name,
                 gender: gender,
-                instituteId:res.locals.currentUser.institute,
+                institute: req.session.user.institute,
                 department: department,
                 enrolledDate: enrolledDate,
                 employeeID: employeeId,
@@ -37,7 +38,7 @@ exports.addUser = async (req, res) => {
             }else{
                 throw new Error('Invalid Type Selected')
             } 
-            req.flash("success", "Email already exists")
+            req.flash("success", "Employee Added")
             res.redirect('/admin')
         }catch(err){
             console.log(err)

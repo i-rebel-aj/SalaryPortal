@@ -104,3 +104,28 @@ exports.renderAddSalaryInfoForm= async (req, res)=>{
         res.redirect('/admin')
     }
 }
+exports.addAllowancesToEmployee= async (req, res)=>{
+    try{
+        const {allowanceName, allowanceAmount, allowanceInfo}=req.body
+        const allowanceObjectid=req.params.id
+        const foundInstitute= await Institute.findById(req.session.user.institute)
+        //Improve logic here if you can
+        // await user.find( { $or: [ { instutute: <>,  type: 'Faculty' },{ instutute: <>,  type: 'Staff' }] })
+        let allowance={
+            allowanceName:allowanceName,
+            allowanceAmount: allowanceAmount,
+            allowanceInfo: allowanceInfo
+        }
+        for (const employeeInfo of foundInstitute.employeeInfo) {
+            if(employeeInfo._id.toString()===allowanceObjectid.toString()){
+                employeeInfo.annualAllowances.push(allowance)
+            }
+        }
+        await foundInstitute.save()
+        req.flash('success', 'Info added Success add more if you like')
+        res.redirect('/admin/employee/info')
+    }catch(err){
+        req.flash('error', `Something Went wrong ${err.message}`)
+        res.redirect('/admin')
+    }
+}

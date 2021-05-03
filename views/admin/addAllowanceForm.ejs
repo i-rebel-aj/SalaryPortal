@@ -1,21 +1,25 @@
 <%- include('../Partials/MetaTag/adminMeta.ejs') %>
-<title>Admin | Add Department</title>
+<title>Admin | Add Allowances</title>
 <%- include('../Partials/Navbar/adminNav.ejs') %>
 <%- include('../Partials/flash_messages') %>
 <%- include('../Partials/SideBar/adminside.ejs') %>
 <div class="container">
-    <form action="/admin/department" method="POST">
+    <h2>Adding Allowance for the designation ... </h2>
+    <h3>Department</h3>
+    <h4>Employee Type</h4>
+    <form action="/admin/employeeinfo/<%=employeeInfoId%>/allowance" method="POST">
             <div class="form-group">
-            <label for="exampleInputPassword1">Department Name</label>
-            <input type="text" class="form-control" id="exampleInputPassword1" name="departmentName">
+                <label for="exampleInputPassword1">Allowance Name</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" name="allowanceName">
             </div>
             <div class="form-group">
-            <label for="exampleInputPassword1">Employee Type</label>
-            <select name="containsEmployee" multiple="multiple" required>
-                <option value="Staff">Staff</option>
-                <option value="Faculty">Faculty</option>
-                <option value="Management">Management</option>
-            </select>
+                <label for="exampleInputPassword1">Allowance Amount</label>
+                <input type="number" min="0" class="form-control" id="exampleInputPassword1" name="allowanceAmount">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Allowance Info</label>
+                <textarea name="allowanceInfo" class="form-control" cols="30" rows="10"></textarea>
+            </div>
             </div>
         <button type="submit" class="btn btn-primary btn-md">Submit</button>
     </form>
