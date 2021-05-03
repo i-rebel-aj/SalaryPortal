@@ -78,11 +78,10 @@ exports.addEmployeeSalaryInfo= async (req, res)=>{
     try{
         const instituteId= req.session.user.institute
         const foundInstitute= await Institute.findById(instituteId)
-        const foundDepartment= await Department.findOne({departmentName: department})
         const employeeInfo={
             employeeType: employeeType,
             designationName: designationName,
-            department: foundDepartment._id,
+            department: department,
             stipedCurrency: stipedCurrency,
             annualbasePay: annualbasePay,
             paidLeavesPermitted: paidLeavesPermitted
@@ -91,6 +90,57 @@ exports.addEmployeeSalaryInfo= async (req, res)=>{
         await foundInstitute.save()
         req.flash('success', 'Info added Success')
         res.redirect('/admin')
+    }catch(err){
+        req.flash('error', `Something Went wrong ${err.message}`)
+        res.redirect('/admin')
+    }
+}
+exports.renderAddSalaryInfoForm= async (req, res)=>{
+    try{
+        const foundDepartment=await Department.find({associatedInstituteId: req.session.user.institute})
+        res.render('./admin/addEmployeeSalaryInfo', {departments: foundDepartment})
+    }catch(err){
+        req.flash('error', `Something Went wrong ${err.message}`)
+        res.redirect('/admin')
+    }
+}
+exports.addAllowancesToEmployee= async (req, res)=>{
+    try{
+        const {allowanceName, allowanceAmount, allowanceInfo}=req.body
+        const allowanceObjectid=req.params.id
+        const foundInstitute= await Institute.findById(req.session.user.institute)
+        //Improve logic here if you can
+        // await user.find( { $or: [ { instutute: <>,  type: 'Faculty' },{ instutute: <>,  type: 'Staff' }] })
+        let allowance={
+            allowanceName:allowanceName,
+            allowanceAmount: allowanceAmount,
+            allowanceInfo: allowanceInfo
+        }
+        for (const employeeInfo of foundInstitute.employeeInfo) {
+            if(employeeInfo._id.toString()===allowanceObjectid.toString()){
+                employeeInfo.annualAllowances.push(allowance)
+            }
+        }
+        await foundInstitute.save()
+        req.flash('success', 'Info added Success add more if you like')
+        res.redirect('/admin/employee/info')
+    }catch(err){
+        req.flash('error', `Something Went wrong ${err.message}`)
+        res.redirect('/admin')
+    }
+}
+exports.renderEmployeeSalaryInfo=async (req, res)=>{
+    try{
+        const foundInstitute= await Institute.findById(req.session.user.institute).populate('employeeInfo.department', 'departmentName')
+        const employeeInfoObjectid=req.params.id
+        let foundEmployeeSalaryInfo={}
+        for (const employeeInfo of foundInstitute.employeeInfo) {
+            if(employeeInfo._id.toString()===employeeInfoObjectid.toString()){
+                foundEmployeeSalaryInfo=employeeInfo
+            }
+        }
+        console.log(foundEmployeeSalaryInfo)
+        res.render('./admin/employeeSalaryInfo', {employee: foundEmployeeSalaryInfo})
     }catch(err){
         req.flash('error', `Something Went wrong ${err.message}`)
         res.redirect('/admin')

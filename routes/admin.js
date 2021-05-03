@@ -5,7 +5,7 @@ const {viewAllDepartment, viewDepartmentForm, addDepartment}=require('../control
 const {isAdmin,isFaculty}=require('../middlewares/authorization')
 const {isLoggedIn}=require('../middlewares/authentication')
 const {viewInstituteEmployeeInfo}=require('../controllers/employee')
-const {addEmployeeSalaryInfo}=require('../controllers/Institute')
+const {addEmployeeSalaryInfo, renderAddSalaryInfoForm, addAllowancesToEmployee, renderEmployeeSalaryInfo}=require('../controllers/Institute')
 /*===============================
     All POST routes goes here
 =================================*/
@@ -27,6 +27,12 @@ router.post('/department', [isLoggedIn, isAdmin], addDepartment)
     @Access Private
 */
 router.post('/employeeinfo', [isLoggedIn, isAdmin], addEmployeeSalaryInfo)
+/*
+    @Route  POST  /employeeinfo/:id/allowance
+    @Desc   For admin to add employee allowances
+    @Access Private
+*/
+router.post('/employeeinfo/:id/allowance', [isLoggedIn, isAdmin],addAllowancesToEmployee)
 /*
     @Route  POST  /admin/employee/leaves
     @Desc   For admin to accept / reject employee leaves
@@ -74,13 +80,25 @@ router.get('/department', [isLoggedIn, isAdmin], viewAllDepartment)
     @Desc   To View add addemployeeinfo form
     @Access Private
 */
-router.get('/addemployeeinfo', [isLoggedIn, isAdmin], (req, res)=>{
-    res.render('./admin/addEmployeeSalaryInfo')
+router.get('/addemployeeinfo', [isLoggedIn, isAdmin], renderAddSalaryInfoForm)
+/*
+    @Route  GET  /admin/addemployeeinfo/:id/alowance
+    @Desc   To View add add Allowance form
+    @Access Private
+*/
+router.get('/addemployeeinfo/:id/allowance', [isLoggedIn, isAdmin], (req, res)=>{
+    res.render('./admin/addAllowanceForm', {employeeInfoId: req.params.id})
 })
 /*
     @Route  GET  /admin/employeeinfo
     @Desc   To View employeeinfos tabulated
     @Access Private
 */
-router.get('/employee/info', [isLoggedIn, isAdmin], viewInstituteEmployeeInfo)
+router.get('/employeeinfo', [isLoggedIn, isAdmin], viewInstituteEmployeeInfo)
+/*
+    @Route  GET  /admin/employeeinfo
+    @Desc   To View employee salary info by employee
+    @Access Private
+*/
+router.get('/employeeinfo/:id', [isLoggedIn, isAdmin], renderEmployeeSalaryInfo)
 module.exports=router
