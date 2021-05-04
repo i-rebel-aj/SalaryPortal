@@ -83,6 +83,14 @@ const staffSchema= new mongoose.Schema(
                 //totalAmountSettled=base+ allowances- leaveDeducations - taxDeductions
                 totalAmountSettled:{
                     type: Number
+                },
+                isPaid:{
+                    type: Boolean,
+                    default: false
+                },
+                isGenerated:{
+                    type: Boolean,
+                    default: false
                 }
             }
         ],

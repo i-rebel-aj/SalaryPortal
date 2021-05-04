@@ -1,0 +1,47 @@
+<%- include('../Partials/MetaTag/adminMeta.ejs') %>
+<title>Super Admin</title>
+<%- include('../Partials/Navbar/adminNav.ejs') %>
+<%- include('../Partials/flash_messages') %>
+<%- include('../Partials/SideBar/adminside.ejs') %>
+<div class="container">
+    <!--Each Pair calculated monthly only-->
+    <form action="/admin/employee/<%=employeeId%>/salary" method="post">
+        <button type="submit" class="btn btn-danger">Generate Salary</button>
+    </form>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">From</th>
+            <th scope="col">To</th>
+            <th scope="col">Total Amount Paid</th>
+            <th scope="col">Payment Date</th>
+            <th scope="col">View Full Break Down</th> 
+          </tr>
+        </thead>
+        <tbody>
+         <% salaryInfo.forEach(salary => { %>
+             <tr>
+                <td><%= salary.from.toDateString() %> </td>
+                <td><%= salary.to.toDateString() %> </td>
+                <% if(!salary.isPaid){%>
+                    <% if(salary.isGenerated){%>
+                        <td><a href="/admin/employee/<%=employeeId%>/salary/<%=salary._id%>/pay" class="btn btn-success">Pay Now</a> <%= salary.totalAmountSettled %></td>
+                    <%}else{%>
+                        <td><a href="" class="btn btn-danger">Generate Now</a></td>
+                    <%} %> 
+                <%}else{%>
+                    <td>Paid! <%= salary.totalAmountSettled %> </td>
+                <% } %>
+                <td>Payment Date Will Go Here</td> 
+                <% if(!salary.isPaid){%>
+                   <td>Not Paid Yet</td>
+                <%}else{%>
+                    <td><a href="" class="btn btn-info">View Full Breakdown</a> </td>
+                <% } %>
+             </tr>
+         <% }); %> 
+        </tbody>
+      </table>
+</div>
+
+<%- include('../Partials/Scripts/adminscript.ejs') %>

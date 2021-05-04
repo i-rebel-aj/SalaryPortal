@@ -4,8 +4,19 @@ const {addUser, renderRegisterationPage,viewleaves,leave}=require('../controller
 const {viewAllDepartment, viewDepartmentForm, addDepartment}=require('../controllers/department')
 const {isAdmin,isFaculty}=require('../middlewares/authorization')
 const {isLoggedIn}=require('../middlewares/authentication')
-const {viewInstituteEmployeeInfo, viewAllInstituteEmployees}=require('../controllers/employee')
+const {viewInstituteEmployeeInfo, viewAllInstituteEmployees, renderEmployeeSalaryCompletePage, generateSalary, markPaid}=require('../controllers/employee')
 const {addEmployeeSalaryInfo, renderAddSalaryInfoForm, addAllowancesToEmployee, renderEmployeeSalaryInfo}=require('../controllers/Institute')
+const multer=require('multer')
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, 'uploads')
+    },
+    filename: function(req, file, cb) {
+        //const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+        cb(null, `${Date.now()}_${file.originalname}`)
+    }
+});
+const  upload = multer({ storage: storage })
 /*===============================
     All POST routes goes here
 =================================*/
@@ -39,6 +50,18 @@ router.post('/employeeinfo/:id/allowance', [isLoggedIn, isAdmin],addAllowancesTo
     @Access Private
 */
 router.post('/employee/leave',[isLoggedIn, isAdmin], leave)
+/*
+    @Route  POST  /admin/employee/id/salary
+    @Desc   For admin to generate user salary
+    @Access Private
+*/
+router.post('/employee/:id/salary',[isLoggedIn, isAdmin], generateSalary)
+/*
+    @Route  POST  /admin/employee/<%=employeeId%>/salary/<%=salary._id%>/pay
+    @Desc   For admin to pay the salary
+    @Access Private
+*/
+router.post('/employee/:employeeId/salary/:salaryId/pay',[isLoggedIn, isAdmin, upload.single('submissionFile')], markPaid)
 /*===============================
     All GET routes goes here
 =================================*/
@@ -100,6 +123,20 @@ router.get('/addemployeeinfo/:id/allowance', [isLoggedIn, isAdmin], (req, res)=>
     @Access Private
 */
 router.get('/employeeinfo', [isLoggedIn, isAdmin], viewInstituteEmployeeInfo)
+/*
+    @Route  GET  /admin/employee/id/salary
+    @Desc   To View employee salary info by employee
+    @Access Private
+*/
+router.get('/employee/:id/salary', [isLoggedIn, isAdmin], renderEmployeeSalaryCompletePage)
+/*
+    @Route  GET  /admin/employee/<%=employeeId%>/salary/<%=salary._id%>/pay
+    @Desc   For admin to pay the salary
+    @Access Private
+*/
+router.get('/employee/:employeeId/salary/:salaryId/pay',[isLoggedIn, isAdmin], async (req, res)=>{
+    res.render('./admin/viewPaymentForm', {employeeId: req.params.employeeId, salaryId: req.params.salaryId})
+})
 /*
     @Route  GET  /admin/employeeinfo
     @Desc   To View employee salary info by employee

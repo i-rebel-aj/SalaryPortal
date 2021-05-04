@@ -68,9 +68,13 @@ const employeeSchema= new mongoose.Schema(
                 ],
                 paymentReceipts:[
                     {
-                        url:{
-                            type: String
-                        }
+                        fileInfo:{
+                            path: String,
+                            name: String,
+                            mime_type: String,
+                            file_type: String
+                        },
+                        remarks: String
                     }
                 ],
                 leaveDeductions:{
@@ -83,6 +87,14 @@ const employeeSchema= new mongoose.Schema(
                 //totalAmountSettled=base+ allowances- leaveDeducations - taxDeductions
                 totalAmountSettled:{
                     type: Number
+                },
+                isPaid:{
+                    type: Boolean,
+                    default: false
+                },
+                isGenerated:{
+                    type: Boolean,
+                    default: false
                 }
             }
         ],
