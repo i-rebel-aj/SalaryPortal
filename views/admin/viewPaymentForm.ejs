@@ -1,0 +1,22 @@
+<%- include('../Partials/MetaTag/adminMeta.ejs') %>
+<title>Admin | Add Allowances</title>
+<%- include('../Partials/Navbar/adminNav.ejs') %>
+<%- include('../Partials/flash_messages') %>
+<%- include('../Partials/SideBar/adminside.ejs') %>
+<div class="container">
+    <h2>Adding Allowance for the designation ... </h2>
+    <h3>Department</h3>
+    <h4>Employee Type</h4>
+    <form class="form-signin" action="/admin/employee/<%=employeeId%>/salary/<%=salaryId%>/pay" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <label>Remarks</label>
+            <textarea name="remarks" id="" cols="30" rows="10"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlFile1">Attach Receipt File (PDF or Image)</label>
+            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="submissionFile" required>
+          </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+      </form>
+</div>
+<%- include('../Partials/Scripts/adminscript.ejs') %>

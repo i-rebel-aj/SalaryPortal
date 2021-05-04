@@ -1,0 +1,27 @@
+<%- include('../Partials/MetaTag/adminMeta.ejs') %>
+<title>Admin | Add Allowances</title>
+<%- include('../Partials/Navbar/adminNav.ejs') %>
+<%- include('../Partials/flash_messages') %>
+<%- include('../Partials/SideBar/adminside.ejs') %>
+<div class="container">
+    <h3>Generating Salry for employee <%=employee.name%> </h3>
+    <h3>Designation Id <%=employee.designationId%> </h3>
+    <h4>Employee Type <%=employee.Type%></h4>
+    <form action="/admin/employee/<%=employee._id%>/salary" method="POST">
+            <div class="form-group">
+                <label for="exampleInputPassword1">From</label>
+                <input type="date" class="form-control" id="exampleInputPassword1" name="from">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">To</label>
+                <input type="date" class="form-control" id="exampleInputPassword1" name="to">
+            </div>
+            <h4>Allowances Mech Comming Soon</h4>
+            <!-- <div class="form-group">
+                <label for="exampleInputPassword1">Allowance Info</label>
+                <textarea name="allowanceInfo" class="form-control" cols="30" rows="10"></textarea>
+            </div> -->
+        <button type="submit" class="btn btn-primary btn-md">Submit</button>
+    </form>
+</div>
+<%- include('../Partials/Scripts/adminscript.ejs') %>

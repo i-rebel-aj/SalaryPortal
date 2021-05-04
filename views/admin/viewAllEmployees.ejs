@@ -7,27 +7,29 @@
     <table class="table table-striped">
         <thead class="thead-dark">
           <tr>
+            <th scope="col">Employee ID</th>
             <th scope="col">Employee Type</th>
-            <th scope="col">Designation Name</th>
-            <th scope="col">Department</th>
-            <th scope="col">Annual Base Pay</th>
-            <th scope="col">Paid Leaves Permitted</th>
-            <th scope="col">Add Allowances</th>
-            <th scope="col">Add Pension Details</th>
-            <th scope="col">View Complete Details</th>
+            <th scope="col">Designation Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Designation, Department</th>
+            <th scope="col">Get Salary Details</th>
+            <th scope="col">View Leave Details</th>
+            <th scope="col">Griviences</th>
           </tr>
         </thead>
         <tbody>
          <% employees.forEach(employee => { %>
              <tr>
-                <td><%= employee.employeeType %> </td>
-                <td><%= employee.designationName %> </td>
-                <td><%= employee.department.departmentName %> </td>
-                <td><%= employee.annualbasePay%> <%= employee.stipendCurrency %> </td>
-                <td><%= employee.paidLeavesPermitted%></td>
-                <td><a href="/admin/addemployeeinfo/<%=employee._id%>/allowance" class="btn btn-success btn-md">Add Allowances Info</a></td>
-                <td><a href="" class="btn btn-info btn-md">Add Pension Info</a></td>
-                <td><a href="/admin/employeeinfo/<%=employee._id%>" class="btn btn-link btn-md">View Complete Info</a></td>
+                <td><%= employee.employeeID %> </td>
+                <td><%= employee.Type %> </td>
+                <td><%= employee.designationId %> </td>
+                <td><%= employee.name %> </td>
+                <td><%= employee.email %> </td>
+                <td><%= employee.designation.designationName %> , {Department to be added soon} </td>
+                <td><a href="/admin/employee/<%=employee._id%>/salary" class="btn btn-success btn-md">Get Salary Details</a></td>
+                <td><a href="/admin/employee/<%=employee._id%>/leave" class="btn btn-warning btn-md">View leaves</a></td>
+                <td><a href=" " class="btn btn-info btn-md">Griviences</a></td>
              </tr>
          <% }); %> 
         </tbody>

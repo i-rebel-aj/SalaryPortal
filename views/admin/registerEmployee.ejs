@@ -10,7 +10,7 @@
               <header class="panel-heading">
                 Add Employees
               </header>
-              <div class="container mt-3">
+              <div class="container">
                 <form action="#" method="post" class="form-horizontal ">            
                   <div class="custom-file col-lg-12 mb-3">
                     <input type="file" class="custom-file-input" id="customFile" name="filename">
@@ -23,83 +23,52 @@
               </div>
               <h3 style="text-align: center;">OR</h3>
               <div class="panel-body">
+                <div class="container">
+                  <form class="form-horizontal" id="form" method="post" action="/admin/adduser">
 
-                <form class="form-horizontal" id="form" method="post" action="/admin/adduser">
-
-                  <div class="form-group">
-                    <label class="control-label">Full Name</label>
-                    <input type="text" class="form-control" name="name" required>
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label" for="select" required>Department</label>
-                    <select class="form-control form-control-lg" name="department">
-                      <% if(departments){%>
-                        <% departments.forEach((department)=>{%>
-                          <option value="<%=department._id%>"><%= department.departmentName %> </option>
-                        <%}) %>
-                      <%}else{%>
-                          <option>No department Exists</option>
-                      <%}%> 
-                    </select>
-                  </div>
-                
-                  <div class="form-group">
-                    <label class="control-label" for="select" required>Type</label>
-                    <select class="form-control form-control-lg" name="type">
-                      <option value="" selected disabled>Choose One</option>
-                          <option value="Faculty">Faculty</option>
-                          <option value="Staff">Staff</option>
-                          <option value="Management">Management</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label">Employee Id</label>
-                    <input type="text" class="form-control" name="employeeId" required>
-                  </div>
-
-                  <div class="form-group">
-                      <label class="control-label" for="join_date">Joining Date</label>
-                      <div class="col-sm-10">
+                    <div class="form-group">
+                      <label class="control-label">Full Name</label>
+                      <input type="text" class="form-control" name="name" required>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label">Employee Id</label>
+                      <input type="text" class="form-control" name="employeeId" required>
+                    </div>
+  
+                    <div class="form-group">
+                        <label class="control-label" for="join_date">Joining Date</label>
                         <input type="date" id="join_date" class="form-control" name="enrolledDate" required>
-                      </div>  
-                  </div>
-
-                  <div class="form-group">
-                    <label class="control-label">Email</label>
-                    <div class="col-sm-10">
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label">Email</label>
                       <input type="text" class="form-control" name="email" required>
                     </div>
-                  </div>
-                  <!-- <div class="form-group">
-                    <label class="control-label" for="select" required>Designation</label>
-                    <div class="col-lg-10">
-                      <select class="form-control form-control-lg" name="institute">
-                        <option value="" selected disabled>Choose One</option>
-                            <option>Designation 1</option>
-                            <option>Designation 2</option>
-                            <option>Designation 3</option>
+                    <div class="form-group">
+                      <label class="control-label" for="select" required>Designation ID</label>
+                      <select class="form-control form-control-lg" name="designationId">
+                        <% designations.forEach(designation=>{%>
+                          <option value="<%=designation._id%>">Designation ID <%=designation._id%> </option>
+                        <%}) %>
                       </select>
                     </div>
-                  </div> -->
-                  <div class="form-group">
-                    <label class="control-label" for="select" required>Gender</label>
-                    <select class="form-control form-control-lg" name="gender">
-                      <option value="male" selected>Male</option>
-                          <option value="female">Female</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label">Password</label>
-                    <div class="col-sm-10">
+                    <div class="form-group">
+                      <label class="control-label" for="select" required>Gender</label>
+                      <select class="form-control form-control-lg" name="gender">
+                        <option value="male" selected>Male</option>
+                            <option value="female">Female</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label">Password</label>
                       <input class="form-control" type="password" name="pass" id="pass" required>
                     </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label">Confirm Password</label>
-                    <input class="form-control" type="password" name="confirmpass" required>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                    <div class="form-group">
+                      <label class="control-label">Confirm Password</label>
+                      <input class="form-control" type="password" name="confirmpass" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+                </div>
               </div>
             </section>
           </div>

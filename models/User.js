@@ -1,6 +1,8 @@
 const mongoose=require("mongoose")
 const adminSchema=require("./Schemas/Admin")
-const employeeSchema=require('./Schemas/Employee')
+const employeeSchema=require('./Schemas/Faculty')
+const managementSchema=require('./Schemas/Management')
+const staffSchema=require('./Schemas/Staff')
 const options={discriminatorKey: 'Type'}
 const bcrypt = require("bcrypt");
 const userSchema=new mongoose.Schema(
@@ -67,7 +69,7 @@ userSchema.methods = {
 }
 const User=mongoose.model('SalaryPortal_User', userSchema)
 const Faculty=User.discriminator('Faculty', employeeSchema)
-const Staff=User.discriminator('Staff', employeeSchema)
-const Management=User.discriminator('Management', employeeSchema)
+const Staff=User.discriminator('Staff', staffSchema)
+const Management=User.discriminator('Management', managementSchema)
 const Admin=User.discriminator('Admin', adminSchema)
 module.exports={User, Faculty, Admin, Staff, Management}

@@ -55,6 +55,10 @@ const InstituteSchema=new mongoose.Schema(
                     pensionPay:{
                         type: Number
                     }
+                },
+                //This is in percent
+                taxRateOnBase:{
+                    type: Number
                 }
             }
         ],

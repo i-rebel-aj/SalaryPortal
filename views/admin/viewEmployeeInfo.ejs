@@ -7,11 +7,13 @@
     <table class="table table-striped">
         <thead class="thead-dark">
           <tr>
+            <th scope="col">Designation ID</th>
             <th scope="col">Employee Type</th>
             <th scope="col">Designation Name</th>
             <th scope="col">Department</th>
             <th scope="col">Annual Base Pay</th>
             <th scope="col">Paid Leaves Permitted</th>
+            <th scope="col">Tax Rate Annual in (%)</th>
             <th scope="col">Add Allowances</th>
             <th scope="col">Add Pension Details</th>
             <th scope="col">View Complete Details</th>
@@ -20,11 +22,13 @@
         <tbody>
          <% employees.forEach(employee => { %>
              <tr>
+                <td><%= employee._id %> </td>
                 <td><%= employee.employeeType %> </td>
                 <td><%= employee.designationName %> </td>
                 <td><%= employee.department.departmentName %> </td>
                 <td><%= employee.annualbasePay%> <%= employee.stipendCurrency %> </td>
                 <td><%= employee.paidLeavesPermitted%></td>
+                <td><%= employee.taxRateOnBase%></td>
                 <td><a href="/admin/addemployeeinfo/<%=employee._id%>/allowance" class="btn btn-success btn-md">Add Allowances Info</a></td>
                 <td><a href="/admin/addemployeeinfo/<%=employee._id%>/pension" class="btn btn-info btn-md">Add Pension Info</a></td>
                 <td><a href="/admin/employeeinfo/<%=employee._id%>" class="btn btn-link btn-md">View Complete Info</a></td>

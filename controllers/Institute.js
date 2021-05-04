@@ -74,7 +74,7 @@ exports.addInstituteAdmin = async (req, res) => {
 
 //For Admin
 exports.addEmployeeSalaryInfo= async (req, res)=>{
-    const {employeeType, designationName, department, stipedCurrency, annualbasePay, paidLeavesPermitted}=req.body
+    const {employeeType, designationName, department, stipedCurrency, annualbasePay, paidLeavesPermitted, taxRateOnBase}=req.body
     try{
         const instituteId= req.session.user.institute
         const foundInstitute= await Institute.findById(instituteId)
@@ -84,7 +84,8 @@ exports.addEmployeeSalaryInfo= async (req, res)=>{
             department: department,
             stipedCurrency: stipedCurrency,
             annualbasePay: annualbasePay,
-            paidLeavesPermitted: paidLeavesPermitted
+            paidLeavesPermitted: paidLeavesPermitted,
+            taxRateOnBase: taxRateOnBase
         }
         foundInstitute.employeeInfo.push(employeeInfo)
         await foundInstitute.save()
@@ -123,7 +124,7 @@ exports.addAllowancesToEmployee= async (req, res)=>{
         }
         await foundInstitute.save()
         req.flash('success', 'Info added Success add more if you like')
-        res.redirect('/admin/employee/info')
+        res.redirect('/admin/employeeinfo')
     }catch(err){
         req.flash('error', `Something Went wrong ${err.message}`)
         res.redirect('/admin')
