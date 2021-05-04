@@ -35,4 +35,23 @@
         </tbody>
       </table>
 </div>
+<div class="container">
+    <h4>Pension Info</h4>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Minimum Service Years</th>
+            <th scope="col">Minimum Age</th>
+            <th scope="col">Pension Pay</th>
+          </tr>
+        </thead>
+        <tbody>
+             <tr>
+                <td><%= employee.pensionInfo.minServiceYears %> </td>
+                <td><%= employee.pensionInfo.minAge %>  </td>
+                <td><%= employee.pensionInfo.pensionPay %> </td>
+             </tr>
+        </tbody>
+      </table>
+</div>
 <%- include('../Partials/Scripts/adminscript.ejs') %>

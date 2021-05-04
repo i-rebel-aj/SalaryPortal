@@ -12,13 +12,13 @@ function table(x,id) {
   details.value = values[0];
   document.getElementById("leave").classList.add("d-none")
 
-  var details = document.getElementById("enrollment");
+  details = document.getElementById("enrollment");
   details.value = values[1];
   
   details = document.getElementById("name");
   details.value = values[2];
 
-  var details = document.getElementById("department");
+  details = document.getElementById("department");
   details.value = values[3];
 
   details = document.getElementById("leavesRemaining");
@@ -27,6 +27,14 @@ function table(x,id) {
   details = document.getElementById("reason");
   details.value = values[5];
   
+  var status = values[6]
+  if(status === 'Approved'){
+    document.getElementById("approved").value = 'Approved';
+    document.getElementById("approvedid").classList.remove("d-none");
+    document.getElementById("status").classList.add("d-none");
+    document.getElementById("submit").classList.add("d-none");
+
+  }
   console.log(values);
   var element = document.getElementById("leaveTable");
   element.classList.add("d-none");
@@ -47,11 +55,11 @@ function downloadpdf()
 {
   // console.log("sfnkdj");
   // alert("download");
-  let  newWin = window.open('', '', 'height=700,width=700');
-  let style = "<style>";
+  var  newWin = window.open('', '', 'height=700,width=700');
+  var style = "<style>";
   // style = style + "h2 {text-align:center; font:22px Times New Roman; font-weight:bold;}";
   style = style + "</style>";
-  let theBody = '<h2 class="text-center">भारतीय सूचना प्रौद्योगिकी संस्थान गुवाहाटी</h2> \n <h1 class="text-center">Indian Institute Of Information Technology Guwahati</h1>'
+  var theBody = '<h2 class="text-center">भारतीय सूचना प्रौद्योगिकी संस्थान गुवाहाटी</h2> \n <h1 class="text-center">Indian Institute Of Information Technology Guwahati</h1>'
   newWin.document.write(style);
   newWin.document.write(theBody);
   newWin.document.close();

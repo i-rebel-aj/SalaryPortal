@@ -90,7 +90,7 @@ exports.viewleaves = async(req,res)=>{
         let userLeave = {
             employeeId: user.employeeID,
             name: user.name,
-            department: user.department.departmentName,
+            department: user.departmentName,
             leavesReamaining: 12,
             leaves: leaves
         }

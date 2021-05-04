@@ -4,8 +4,9 @@ const {addUser, renderRegisterationPage,viewleaves,leave}=require('../controller
 const {viewAllDepartment, viewDepartmentForm, addDepartment}=require('../controllers/department')
 const {isAdmin,isFaculty}=require('../middlewares/authorization')
 const {isLoggedIn}=require('../middlewares/authentication')
+const {viewInstituteEmployeeInfo}=require('../controllers/employee')
+const {addEmployeeSalaryInfo, renderAddSalaryInfoForm, addAllowancesToEmployee, renderEmployeeSalaryInfo,addPensionToEmployee}=require('../controllers/Institute')
 const {viewInstituteEmployeeInfo, viewAllInstituteEmployees, renderEmployeeSalaryCompletePage, generateSalary, markPaid}=require('../controllers/employee')
-const {addEmployeeSalaryInfo, renderAddSalaryInfoForm, addAllowancesToEmployee, renderEmployeeSalaryInfo}=require('../controllers/Institute')
 const multer=require('multer')
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
@@ -50,6 +51,12 @@ router.post('/employeeinfo/:id/allowance', [isLoggedIn, isAdmin],addAllowancesTo
     @Access Private
 */
 router.post('/employee/leave',[isLoggedIn, isAdmin], leave)
+/*
+    @Route  POST  /employeeinfo/:id/pension
+    @Desc   For admin to add employee Pension
+    @Access Private
+*/
+router.post('/employeeinfo/:id/pension', [isLoggedIn, isAdmin],addPensionToEmployee)
 /*
     @Route  POST  /admin/employee/id/salary
     @Desc   For admin to generate user salary
@@ -143,4 +150,12 @@ router.get('/employee/:employeeId/salary/:salaryId/pay',[isLoggedIn, isAdmin], a
     @Access Private
 */
 router.get('/employeeinfo/:id', [isLoggedIn, isAdmin], renderEmployeeSalaryInfo)
+/*
+    @Route  GET  /admin/employeeinfo/:id/pension
+    @Desc   For admin to add employee pension
+    @Access Private
+*/
+router.get('/addemployeeinfo/:id/pension', [isLoggedIn, isAdmin],(req,res)=>{
+    res.render('./admin/addPensionForm', {employeeInfoId: req.params.id})
+})
 module.exports=router

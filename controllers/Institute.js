@@ -147,3 +147,33 @@ exports.renderEmployeeSalaryInfo=async (req, res)=>{
         res.redirect('/admin')
     }
 }
+
+exports.addPensionToEmployee= async (req, res)=>{
+    try{
+        console.log(req.body)
+        const { minserviceage,  minage, pensionpay}=req.body
+        const pensionObjectid=req.params.id
+        const foundInstitute= await Institute.findById(req.session.user.institute)
+        //Improve logic here if you can
+        // await user.find( { $or: [ { instutute: <>,  type: 'Faculty' },{ instutute: <>,  type: 'Staff' }] })
+        let pension={
+            minServiceYears: minserviceage,
+            minAge: minage,
+            pensionPay: pensionpay
+        }
+        for (const employeeInfo of foundInstitute.employeeInfo) {
+            if(employeeInfo._id.toString()===pensionObjectid.toString()){
+                employeeInfo.pensionInfo = pension
+                console.log(employeeInfo.pensionInfo)
+            }
+        }
+
+        await foundInstitute.save()
+        req.flash('success', 'Info added Success add more if you like')
+        res.redirect('/admin/employeeinfo')
+    }catch(err){
+        req.flash('error', `Something Went wrong ${err.message}`)
+        res.redirect('/admin')
+    }
+}
+

@@ -18,7 +18,17 @@ exports.applyforleave = async (req, res) => {
         res.redirect('/faculty/applyleave')
         
     }catch(err){
+        console.log(err)
         req.flash('success', 'Something Went Wrong ${err.message}')
         res.redirect('/faculty/applyleave')
+    }
+}
+exports.profile = async(req,res)=>{
+    try{
+        const foundUser=await User.findById(req.session.user._id).populate('department','departmentName')
+        res.render('./faculty/facProfile',{user: foundUser})
+    }catch(err){
+        req.flash('success', 'Something Went Wrong ${err.message}')
+        res.redirect('/faculty/')
     }
 }

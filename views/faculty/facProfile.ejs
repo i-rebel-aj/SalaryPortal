@@ -2,7 +2,7 @@
   <title>Profile</title>
     <%- include('../Partials/Navbar/facultyNav.ejs') %>
 
-     <%- include('../Partials/Aside/facultyside.ejs') %>
+     <%- include('../Partials/SideBar/facultyside.ejs') %>
         <div class="row">
           <div class="col-lg-12">
             <h3 class="page-header"><i class="fa fa-user" aria-hidden="true"></i></i>Namit Goel</h3>
@@ -18,16 +18,15 @@
                 
               
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">Enrollment Id: </li>
-                <li class="list-group-item">Username: </li>
-                <li class="list-group-item">Email: </li>
-                <li class="list-group-item">Mobile Number :</li>
-                <li class="list-group-item">Department: </li>
-                <li class="list-group-item">College: </li>
-                <li class="list-group-item">Joining Date: </li>
-                <li class="list-group-item">Designation: </li>
-                <li class="list-group-item">Base Salary: </li>
-                <li class="list-group-item">Increment Rate: </li>
+                <li class="list-group-item">Enrollment Id: <%= user.employeeID %></li>
+                <li class="list-group-item">Name: <%= user.name %> </li>
+                <li class="list-group-item">Email: <%= user.email%></li>
+                <li class="list-group-item">Department:<%= user.employeeID %> </li>
+                <li class="list-group-item">College: <%= user.employeeID %> </li>
+                <li class="list-group-item">Joining Date: <%= user.enrolledDate %> </li>
+                <li class="list-group-item">Designation: <%= user.designation %> </li>
+                <li class="list-group-item">Base Salary: <%= user.employeeID %> </li>
+                <li class="list-group-item">Increment Rate: <%= user.employeeID %> </li>
                 
               </ul>
             
