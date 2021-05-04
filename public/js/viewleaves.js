@@ -11,23 +11,17 @@ function table(x,id) {
   var details = document.getElementById("leaveID");
   details.value = values[0];
   document.getElementById("leave").classList.add("d-none")
-
-  details = document.getElementById("enrollment");
-  details.value = values[1];
   
   details = document.getElementById("name");
-  details.value = values[2];
+  details.value = values[1];
 
   details = document.getElementById("department");
-  details.value = values[3];
-
-  details = document.getElementById("leavesRemaining");
-  details.value = values[4];
+  details.value = values[2];
 
   details = document.getElementById("reason");
-  details.value = values[5];
+  details.value = values[3];
   
-  var status = values[6]
+  var status = values[4]
   if(status === 'Approved'){
     document.getElementById("approved").value = 'Approved';
     document.getElementById("approvedid").classList.remove("d-none");

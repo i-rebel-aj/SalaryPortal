@@ -64,21 +64,26 @@ exports.renderRegisterationPage=async (req, res)=>{
     }
 }
 exports.leave = async(req, res)=>{
-    console.log(req.body)
-    const {enrollment,status,leaveId} = req.body;
-    let foundUser = await User.findOne({employeeID: enrollment});
-    // console.log(foundUser.appliedLeave)
-    const leave = foundUser.appliedLeave
+    try{
+        const {enrollment,status,leaveId} = req.body;
+        let foundUser = await User.findOne({employeeID: enrollment});
+        // console.log(foundUser.appliedLeave)
+        const leave = foundUser.appliedLeave
 
-    const l = leave.length
-    for(let i=0;i<l;i++){
-        if(foundUser.appliedLeave[i]._id.toString() === leaveId.toString()){
-            foundUser.appliedLeave[i].approvedStatus = status
+        const l = leave.length
+        for(let i=0;i<l;i++){
+            if(foundUser.appliedLeave[i]._id.toString() === leaveId.toString()){
+                foundUser.appliedLeave[i].approvedStatus = status
+            }
         }
+        // console.log(foundUser.appliedLeave)
+        await foundUser.save()
+         req.flash('success', 'Status Successfully changed')
+        res.redirect('/admin/employee/leaves')
+    }catch(err){
+        req.flash('error', `Something went wrong ${err.message}`)
+        res.redirect('./admin/employee/leaves')
     }
-    // console.log(foundUser.appliedLeave)
-    await foundUser.save()
-    res.redirect('/admin/employee/leaves')
 }
 
 exports.viewleaves = async(req,res)=>{
@@ -90,12 +95,12 @@ exports.viewleaves = async(req,res)=>{
         let userLeave = {
             employeeId: user.employeeID,
             name: user.name,
-            department: user.departmentName,
+            department: req.session.user.designationId,
             leavesReamaining: 12,
             leaves: leaves
         }
         waitingLeaves.push(userLeave)
     }
-    console.log(waitingLeaves)
+    // console.log(waitingLeaves)
     res.render('./admin/viewleaves',{allleaves: waitingLeaves})
 }
