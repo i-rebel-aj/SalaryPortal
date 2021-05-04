@@ -4,7 +4,6 @@ const {addUser, renderRegisterationPage,viewleaves,leave}=require('../controller
 const {viewAllDepartment, viewDepartmentForm, addDepartment}=require('../controllers/department')
 const {isAdmin,isFaculty}=require('../middlewares/authorization')
 const {isLoggedIn}=require('../middlewares/authentication')
-const {viewInstituteEmployeeInfo}=require('../controllers/employee')
 const {addEmployeeSalaryInfo, renderAddSalaryInfoForm, addAllowancesToEmployee, renderEmployeeSalaryInfo,addPensionToEmployee}=require('../controllers/Institute')
 const {viewInstituteEmployeeInfo, viewAllInstituteEmployees, renderEmployeeSalaryCompletePage, generateSalary, markPaid}=require('../controllers/employee')
 const multer=require('multer')
