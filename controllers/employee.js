@@ -119,3 +119,28 @@ exports.markPaid=async(req, res)=>{
         res.redirect('/admin')
     }
 }
+//For Regular Employees
+exports.viewLoggedInUserSalary= async(req, res)=>{
+    try{
+        res.render('./faculty/viewAllSalary', {salaryInfo: req.session.user.salaryInfo})
+    }catch(err){
+        console.log(err)
+        req.flash('error', `Something Went wrong ${err.message}`)
+        res.redirect('/faculty')
+    }
+}
+exports.viewSalaryById= async(req, res)=>{
+    try{
+        let foundSalary={}
+        for (const salary of req.session.user.salaryInfo) {
+            if(salary._id.toString()===req.params.id){
+                foundSalary=salary
+            }
+        }
+        res.render('./faculty/viewSalaryBreakdown', {salary: foundSalary})
+    }catch(err){
+        console.log(err)
+        req.flash('error', `Something Went wrong ${err.message}`)
+        res.redirect('/faculty')
+    }
+}

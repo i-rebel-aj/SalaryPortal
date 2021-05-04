@@ -1,0 +1,52 @@
+<%- include('../Partials/MetaTag/facultymeta.ejs') %>
+<title>Salary</title>
+<%- include('../Partials/Navbar/facultyNav.ejs') %>
+<%- include('../Partials/SideBar/facultyside.ejs') %>
+      
+    <div class="row">
+      <div class="col-lg-12">
+        <h3 class="page-header"><i class="fa fa-file-text-o"></i> Receipt </h3>
+        <ol class="breadcrumb">
+          <li><i class="fa fa-home"></i><a href="/facultyHome">Home</a></li>
+          <li><i class="icon_document_alt"></i>Salary Receipt</li>
+        </ol>
+      </div>
+    </div>      
+    <div class="row">
+      <div class="container">
+        <table class="table table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">From</th>
+              <th scope="col">To</th>
+              <th scope="col">Paid Status</th>
+              <th scope="col">Payment Date</th>
+              <th scope="col">View Full Break Down</th> 
+            </tr>
+          </thead>
+          <tbody>
+           <% salaryInfo.forEach(salary => { %>
+               <tr>
+                 <% let from= new Date(salary.from) %> 
+                 <% let to= new Date(salary.to) %> 
+                  <td><%= from.toDateString()%> </td>
+                  <td><%= to.toDateString()%> </td>
+                  <% if(!salary.isPaid){%>
+                    <td> Not Paid</td>
+                  <%}else{%>
+                      <td><span class="badge badge-pill badge-success">Paid</span></td>
+                  <% } %>
+                  <td>Payment Date Will Go Here</td> 
+                  <% if(!salary.isPaid){%>
+                     <td>Not Paid Yet</td>
+                  <%}else{%>
+                      <td><a href="/faculty/salary/<%=salary._id%>" class="btn btn-info">View Full Breakdown</a> </td>
+                  <% } %>
+               </tr>
+           <% }); %> 
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+ <%- include('../Partials/Scripts/facultyscripts.ejs') %>

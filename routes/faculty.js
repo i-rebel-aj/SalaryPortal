@@ -3,6 +3,7 @@ const router=express.Router();
 const {applyforleave,profile}=require('../controllers/leave')
 const {isAdmin,isFaculty}=require('../middlewares/authorization')
 const {isLoggedIn}=require('../middlewares/authentication')
+const {viewLoggedInUserSalary, viewSalaryById}=require('../controllers/employee')
 /*===============================
     All POST routes goes here
 =================================*/
@@ -23,7 +24,7 @@ router.post('/applyleave', [isLoggedIn, isFaculty], applyforleave)
 */
 
 router.get('/',[isLoggedIn, isFaculty], (req, res)=>{
-    res.render('./faculty/facultyhome')
+    res.render('./faculty/facultyHome')
 })
 
 /*
@@ -41,6 +42,17 @@ router.get('/applyleave',[isLoggedIn, isFaculty], (req, res)=>{
     @Access Private
 */
 router.get('/profile',[isLoggedIn, isFaculty],profile)
-
+/*
+    @Route  GET  /faculty/salary
+    @Desc   To view Complete Salary Details of faculty
+    @Access Private
+*/
+router.get('/salary',[isLoggedIn, isFaculty],viewLoggedInUserSalary)
+/*
+    @Route  GET  /faculty/salary/:id
+    @Desc   To view Salary info from Id
+    @Access Private
+*/
+router.get('/salary/:id',[isLoggedIn, isFaculty],viewSalaryById)
 
 module.exports=router
